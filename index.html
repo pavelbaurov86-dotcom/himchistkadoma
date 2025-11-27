@@ -3,9 +3,14 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8"/>
-<title>Химчистка мягкой мебели и ковров </title>
+<title>Химчистка мягкой мебели и ковров на дому в Коврове-HimchistkaDoma </title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Выездная химчистка мягкой мебели и ковров. Диваны, матрасы, ковры, стулья. Безопасная химия, выезд бесплатно." name="description"/>
+<meta name="description" content="Выездная химчистка мягкой мебели и ковров в Коврове и районе. Чистим диваны, матрасы, ковры и стулья от пятен и запахов. Безопасная профессиональная химия, выезд бесплатно. Звоните: 8 915 754-81-15."/>
+<link rel="canonical" href="https://himchistkadoma.ru/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://himchistkadoma.ru/">
+<meta property="og:title" content="Химчистка мягкой мебели и ковров на дому в Коврове и районе — HimchistkaDoma">
+<meta property="og:description" content="Выездная химчистка мягкой мебели и ковров в Коврове и районе. Диваны, матрасы, ковры и стулья. Безопасная профессиональная химия, выезд бесплатно. Звоните: 8 915 754-81-15.">
 <style>
         :root {
             --bg-main: #000000;
@@ -1623,7 +1628,7 @@
                 </div>
 <h1 class="hero-title">
                     ПРОФЕССИОНАЛЬНАЯ ВЫЕЗДНАЯ
-                    <span>ХИМЧИСТКА МЕБЕЛИ И КОВРОВ </span>
+                    <span>ХИМЧИСТКА МЕБЕЛИ И КОВРОВ В КОВРОВЕ </span>
 </h1>
 <p class="hero-subtitle">
                     Очистим диваны, матрасы, ковры и стулья от пятен и запахов. Работаем безопасной профессиональной химией.
@@ -1963,7 +1968,7 @@
                             Заполните поля ниже — перезвоним в течение 15–30 минут в рабочее время.
                         </span>
 </div>
-<form id="request-form" onsubmit="return handleSubmit(event)">
+<form id="request-form" onsubmit="return handleSubmit(event)" enctype="multipart/form-data">
 <div class="field">
 <label for="name">Имя</label>
 <input id="name" name="name" placeholder="Как к вам обращаться?" type="text"/>
@@ -2221,7 +2226,7 @@
 </main>
 <footer>
 <div class="container footer-inner">
-<div>© <span id="year"></span> Химчистка мягкой мебели и ковров.</div>
+<div>© <span id="year"></span> Химчистка мягкой мебели и ковров в Коврове.</div>
 <div>
 <br/>
 <a href="#">Политика конфиденциальности</a>
@@ -2260,37 +2265,33 @@
 
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybXYyLaTEnCSd8pVNKS9bG_FxcVu9e2MNln4-XEUbPO3M2wMyo0pdeXGWQfV8cnxg4tg/exec";
 
-    function handleSubmit(event) {
+    
+function handleSubmit(event) {
         event.preventDefault();
+
+        const form = document.getElementById('request-form');
         const name = document.getElementById('name').value.trim();
         const phoneInput = document.getElementById('phone').value.trim();
         const comment = document.getElementById('comment').value.trim();
-        const photosInput = document.getElementById('photos');
         const success = document.getElementById('form-success');
         const error = document.getElementById('form-error');
 
         // простая проверка телефона — хотя бы несколько цифр
         const digits = phoneInput.replace(/\D/g, "");
         if (!name || digits.length < 5) {
-            success.style.display = 'none';
-            error.style.display = 'block';
+            if (success) success.style.display = 'none';
+            if (error) error.style.display = 'block';
             return false;
         }
 
-        const fullPhone = "+7" + digits;
+        if (success) success.style.display = 'none';
+        if (error) error.style.display = 'none';
 
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("phone", fullPhone);
-        formData.append("comment", comment);
+        // собираем все поля формы, включая файл photos
+        const formData = new FormData(form);
 
-        if (photosInput && photosInput.files) {
-            Array.from(photosInput.files).forEach((file) => {
-                formData.append("photos[]", file);
-            });
-        }
-
-        error.style.display = 'none';
+        // приводим телефон к виду +7 ХХХ...
+        formData.set('phone', '+7 ' + phoneInput);
 
         fetch(SCRIPT_URL, {
             method: "POST",
@@ -2301,20 +2302,23 @@
                 return response.text();
             })
             .then(data => {
-                success.style.display = 'block';
-                document.getElementById('request-form').reset();
+                if (success) success.style.display = 'block';
+                form.reset();
+                const uploadInfo = document.getElementById('upload-info');
+                if (uploadInfo) uploadInfo.textContent = 'Файлы не выбраны';
                 alert('Ваша заявка отправлена!');
             })
             .catch(err => {
                 console.error(err);
-                success.style.display = 'none';
-                error.style.display = 'block';
+                if (success) success.style.display = 'none';
+                if (error) error.style.display = 'block';
             });
 
         return false;
     }
 
-    // обработка клика и drag&drop для загрузки фото
+
+// обработка клика и drag&drop для загрузки фото
     document.addEventListener("DOMContentLoaded", function () {
         const uploadArea = document.getElementById("upload-area");
         const photosInput = document.getElementById("photos");
