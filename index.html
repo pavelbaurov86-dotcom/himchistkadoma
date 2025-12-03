@@ -638,7 +638,7 @@
             margin-top: 4px;
         }
 
-        .card-price {
+        .card-price { display:inline-flex; align-items:center; gap:6px;
             margin-top: 10px;
             font-size: 14px;
             font-weight: 600;
@@ -1790,7 +1790,42 @@
         max-width: 340px !important; /* примерно x2 от старого ~170px */
     }
 }
-</style></head><body>
+</style><style>
+.card-title-mobile { display: none; font-size: 16px; font-weight: 600; }
+
+@media (max-width: 720px) {
+    .card-title-mobile { display: block; }
+    .card-title,
+    .card-price {
+        display: none;
+    }
+}
+</style>
+<style>
+@media (max-width: 720px) {
+    .upload-area,
+    .upload-text,
+    .upload-subtext,
+    .upload-info,
+    label[for="file-upload"],
+    input[type="file"] {
+        display: none !important;
+    }
+}
+</style>
+
+<style>
+@media (max-width: 720px){
+    .rent-text-mobilehide { display:none !important; }
+}
+</style>
+
+<style>
+@media (max-width: 720px){
+    .call-text-mobilehide { display:none !important; }
+}
+</style>
+</head><body>
 <header>
 <div class="container header-inner">
 <div class="logo">
@@ -1886,7 +1921,8 @@
 <div class="card-tag">Хит</div>
 </div>
 <h3 class="card-title">Химчистка дивана</h3>
-<p class="card-text">
+<div class="card-title-mobile">Химчистка дивана от 3 500 ₽ за диван</div>
+<p class="card-text mobile-hide">
                         Прямые и угловые, выкатные, со спальным местом. Удаляем пятна от еды, напитков, животных, ручек.
                     </p>
 <div class="card-price">от 3 500 ₽ <small>за диван</small></div>
@@ -1897,7 +1933,8 @@
 <div class="card-tag">Здоровье</div>
 </div>
 <h3 class="card-title">Химчистка матраса</h3>
-<p class="card-text">
+<div class="card-title-mobile">Химчистка матраса от 1 500 ₽ за сторону</div>
+<p class="card-text mobile-hide">
                         Глубокая чистка с обеззараживанием. Боремся с запахами и пылевым клещом, подходит детям и аллергикам.
                     </p>
 <div class="card-price">от 1 500 ₽ <small>за сторону</small></div>
@@ -1908,7 +1945,8 @@
 <div class="card-tag">Дом и офис</div>
 </div>
 <h3 class="card-title">Химчистка кресла и стула</h3>
-<p class="card-text">
+<div class="card-title-mobile">Химчистка кресла и стула от 300 ₽</div>
+<p class="card-text mobile-hide">
                         Обновим посадочные места, подлокотники и спинки. Для дома, кафе и офисов.
                     </p>
 <div class="card-price">от 300 ₽ <small>за единицу</small></div>
@@ -1919,7 +1957,8 @@
 <div class="card-tag">Ковры</div>
 </div>
 <h3 class="card-title">Химчистка Ковра</h3>
-<p class="card-text">
+<div class="card-title-mobile">Химчистка Ковра от 350 ₽ за м²</div>
+<p class="card-text mobile-hide">
                         Чистим ковры и паласы на дому без вывоза, убираем запахи и сложные загрязнения.
                     </p>
 <div class="card-price">от 350 ₽ <small>за м²</small></div>
@@ -2147,7 +2186,7 @@
 <textarea id="comment" name="comment" placeholder="Например: угловой диван + матрас 160×200, Ковров, ул. ..."></textarea>
 </div>
 <div class="field">
-<label for="photos">Фото мебели (необязательно)</label>
+<label style="display:none !important;"></label>
 <div class="upload-area" id="upload-area">
 <span class="upload-text">Перетащите или загрузите фото</span>
 <span class="upload-subtext">Можно прикрепить несколько файлов</span>
@@ -2204,7 +2243,7 @@
 <div class="section-header">
 <h2 class="section-title"><span>А</span>ренда оборудования</h2>
 <p class="section-sub">
-Возьмите профессиональное оборудование для химчистки в аренду, если хотите почистить мебель или ковёр самостоятельно.
+<span class="rent-text-mobilehide">Возьмите профессиональное оборудование для химчистки в аренду, если хотите почистить мебель или ковёр самостоятельно.</span>
 </p>
 </div>
 <div class="equipment-grid">
@@ -2269,7 +2308,7 @@
 <div class="hero-cta" style="margin-top:24px;">
 <button class="btn btn-primary" onclick="scrollToId('order')">Оставить заявку на аренду</button>
 <div class="hero-note">
-Позвоните или оставьте заявку — подберём оборудование под вашу задачу.
+<span class="call-text-mobilehide">Позвоните или оставьте заявку — подберём оборудование под вашу задачу.</span>
 </div>
 </div>
 </div>
