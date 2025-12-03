@@ -365,6 +365,12 @@
             color: var(--accent-soft);
         }
 
+        .hero-badge-mobile {
+            display: none;
+        }
+
+        
+
         .hero-dot {
             width: 8px;
             height: 8px;
@@ -1163,7 +1169,29 @@
             .reviews-grid {
                 grid-template-columns: minmax(0,1fr);
             }
+
+            .mobile-hide {
+                display: none !important;
+            }
+
+            .hero-card {
+                display: none;
+            }
+
+            .hero-badge-desktop {
+                display: none;
+            }
+
+            .hero-badge-mobile {
+                display: inline;
+            }
+
+            .mobile-call-bar {
+                display: block;
+            }
         }
+
+}
 
 
         .phone-input-wrap {
@@ -1801,7 +1829,8 @@
 <div>
 <div class="hero-badge">
 <span class="hero-dot"></span>
-                    Гарантия результата
+<span class="hero-badge-desktop">Гарантия результата</span>
+<span class="hero-badge-mobile">Рейтинг 4.9 • 201 отзыв • <a href="https://www.avito.ru/brands/i1033191?gdlkerfdnwq=101&amp;iid=2629033365&amp;item_type=str_trx&amp;page_from=from_item_header&amp;page_from=from_item_card&amp;iid=2629033365" target="_blank" rel="noopener">Смотреть на Авито</a></span>
                 </div>
 <h1 class="hero-title">
                     ПРОФЕССИОНАЛЬНАЯ ВЫЕЗДНАЯ
@@ -1907,7 +1936,7 @@
 </div>
 </section>
 <!-- BENEFITS -->
-<section>
+<section class="mobile-hide">
 <div class="container">
 <div class="section-header">
 <h2 class="section-title"><span>Ч</span>ем мы лучше</h2>
@@ -1973,7 +2002,7 @@
 </div>
 </section>
 <!-- PROCESS -->
-<section class="section-dark">
+<section class="section-dark mobile-hide">
 <div class="container">
 <div class="section-header">
 <h2 class="section-title"><span>К</span>ак проходит химчистка</h2>
@@ -2013,7 +2042,7 @@
 </div>
 </section>
 <!-- WORKS -->
-<section id="works">
+<section id="works" class="mobile-hide">
 <div class="container">
 <div class="section-header">
 <h2 class="section-title"><span>Н</span>аша работа</h2>
@@ -2073,7 +2102,7 @@
 </p>
 </div>
 <div class="contact-grid">
-<div class="contact-block">
+<div class="contact-block mobile-hide">
 <div class="contact-row">
 <span class="contact-label">Телефон</span>
 <span class="contact-value">
@@ -2193,14 +2222,14 @@
 Для сложных пятен, стыков и труднодоступных мест. Можно использовать вместе с экстрактором или отдельно.
 </div>
 </div>
-<div class="equipment-item">
+<div class="equipment-item mobile-hide">
 <div class="equipment-tag">Условия</div>
 <div class="equipment-title">Сроки и оплата</div>
 <div class="equipment-text">
 Минимальный срок аренды — 1 день. Возможна аренда на несколько дней или недель. Оплата в день получения оборудования.
 </div>
 </div>
-<div class="equipment-item">
+<div class="equipment-item mobile-hide">
 <div class="equipment-tag">Условия</div>
 <div class="equipment-title">Залог и ответственность</div>
 <div class="equipment-text">
@@ -2208,7 +2237,7 @@
 </div>
 </div>
 </div>
-<div class="benefits-grid" style="margin-top:18px;">
+<div class="benefits-grid mobile-hide" style="margin-top:18px;">
 <div class="benefit">
 <div class="benefit-num">01</div>
 <div>
@@ -2246,7 +2275,7 @@
 </div>
 </section>
 <!-- EQUIPMENT -->
-<section class="section-dark" id="equipment">
+<section class="section-dark mobile-hide" id="equipment">
 <div class="container">
 <div class="section-header">
 <h2 class="section-title"><span>О</span>борудование и химия</h2>
@@ -2272,7 +2301,7 @@
 </div>
 </section>
 <!-- ABOUT / REVIEWS -->
-<section id="about">
+<section id="about" class="mobile-hide">
 <div class="container">
 <div class="section-header">
 <h2 class="section-title"><span>О</span> компании</h2>
@@ -2336,7 +2365,7 @@
 </div>
 </section>
 <!-- FAQ -->
-<section class="section-dark" id="faq">
+<section class="section-dark mobile-hide" id="faq">
 <div class="container">
 <div class="section-header">
 <h2 class="section-title"><span>Ч</span>астые вопросы</h2>
@@ -2418,7 +2447,7 @@
                         </span>
 </div>
 </div>
-<div class="contact-block">
+<div class="contact-block mobile-hide">
 <div class="contact-row">
 <span class="contact-label">Ещё раз про заявку</span>
 <span class="contact-value">
