@@ -1921,7 +1921,7 @@
 </div>
 <div class="card-tag">Стандарт</div>
 </div>
-<h3 class="card-title">Прямой диван</h3>
+<h3 class="card-title">Химчистка прямого дивана</h3>
 <div class="card-title-mobile">Химчистка прямого дивана от 3&nbsp;500 ₽</div>
 <p class="card-text mobile-hide">
 Подходит для обычных прямых диванов без сложной формы. Удаляем пятна от еды, напитков и животных.
@@ -1936,7 +1936,7 @@
 </div>
 <div class="card-tag">Угловой</div>
 </div>
-<h3 class="card-title">Угловой диван</h3>
+<h3 class="card-title">Химчистка углового дивана</h3>
 <div class="card-title-mobile">Химчистка углового дивана от 4&nbsp;500 ₽</div>
 <p class="card-text mobile-hide">
 Глубокая чистка Л- и П-образных диванов, со спальным местом и без него.
@@ -1951,7 +1951,7 @@
 </div>
 <div class="card-tag">Раскладной</div>
 </div>
-<h3 class="card-title">Раскладной диван</h3>
+<h3 class="card-title">Химчистка раскладного дивана</h3>
 <div class="card-title-mobile">Химчистка раскладного дивана от 4&nbsp;000 ₽</div>
 <p class="card-text mobile-hide">
 Чистка диванов с книжным, выкатным и другими механизмами. Особое внимание зоне сиденья и спального места.
@@ -2150,7 +2150,8 @@
 </section>
 </main>
 <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     function scrollToId(id) {
         const el = document.getElementById(id);
