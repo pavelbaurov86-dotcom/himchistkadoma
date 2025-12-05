@@ -1850,7 +1850,7 @@
 </button>
 </div>
 <div class="mobile-menu" id="mobile-menu">
-<div class="mobile-menu-nav"><a href="#services" onclick="closeMobileMenu(); scrollToId('services'); return false;">Услуги и цены</a><a href="#works" onclick="closeMobileMenu(); scrollToId('works'); return false;">Наша работа</a><a href="#form-block" onclick="closeMobileMenu(); scrollToId('form-block'); return false;">Записаться</a><a href="#promo" onclick="closeMobileMenu(); scrollToId('promo'); return false;">Акции</a><a href="#rent" onclick="closeMobileMenu(); scrollToId('rent'); return false;">Аренда</a><a href="#equipment" onclick="closeMobileMenu(); scrollToId('equipment'); return false;">Оборудование</a><a href="#about" onclick="closeMobileMenu(); scrollToId('about'); return false;">О компании</a><a href="#contacts" onclick="closeMobileMenu(); scrollToId('contacts'); return false;">Контакты</a></div>
+<div class="mobile-menu-nav"><a href="index.html" onclick="closeMobileMenu();">Главная</a><a href="#services" onclick="closeMobileMenu(); scrollToId('services'); return false;">Услуги и цены</a><a href="#works" onclick="closeMobileMenu(); scrollToId('works'); return false;">Наша работа</a><a href="#form-block" onclick="closeMobileMenu(); scrollToId('form-block'); return false;">Записаться</a><a href="#promo" onclick="closeMobileMenu(); scrollToId('promo'); return false;">Акции</a><a href="#rent" onclick="closeMobileMenu(); scrollToId('rent'); return false;">Аренда</a><a href="#equipment" onclick="closeMobileMenu(); scrollToId('equipment'); return false;">Оборудование</a><a href="#about" onclick="closeMobileMenu(); scrollToId('about'); return false;">О компании</a><a href="#contacts" onclick="closeMobileMenu(); scrollToId('contacts'); return false;">Контакты</a></div>
 <div class="mobile-menu-footer">
 <a class="mobile-menu-phone" href="tel:+79157548115">8 915 754-81-15</a>
 <div class="mobile-menu-time">Пн–Вс 9:00–21:00</div>
@@ -2153,4 +2153,54 @@
 <div>© <span id="year"></span> Химчистка мягкой мебели и ковров в Коврове.</div>
 <div>
 <br/>
-<a href="#">Политика конфиденциальности</footer></body></html>
+<a href="#">Политика конфиденциальности</a>
+</div>
+</div>
+</footer>
+
+<!-- Мобильная плашка заказа химчистки дивана -->
+<div class="mobile-call-bar">
+  <button class="mobile-call-btn" onclick="scrollToId('form-block')">
+    Заказать химчистку дивана
+  </button>
+</div>
+
+<script>
+  (function () {
+    var burger = document.getElementById('burger');
+    var mobileMenu = document.getElementById('mobile-menu');
+
+    window.toggleMobileMenu = function () {
+      if (!burger || !mobileMenu) return;
+      burger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    };
+
+    window.closeMobileMenu = function () {
+      if (!burger || !mobileMenu) return;
+      burger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+    };
+
+    window.scrollToId = function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+
+      var header = document.querySelector('header');
+      var headerHeight = header ? header.offsetHeight : 0;
+      var elementPosition = el.getBoundingClientRect().top + window.scrollY;
+      var offset = elementPosition - headerHeight - 8;
+
+      window.scrollTo({
+        top: offset,
+        behavior: 'smooth'
+      });
+    };
+
+    var yearSpan = document.getElementById('year');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+  })();
+</script>
+</body></html>
