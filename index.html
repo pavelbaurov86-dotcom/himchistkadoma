@@ -1468,11 +1468,6 @@
     max-width: 400px !important;
     max-height: 400px !important;
 }
-
-/* Click only on extractor card (layout unchanged) */
-.rent-click{cursor:pointer}
-.rent-click:focus{outline:2px solid rgba(244,200,66,.55); outline-offset:3px}
-
 </style>
 <style>
 .card, .benefit, .step, .promo, .equipment-item, .review, .contact-block, .about-fact, .gallery-item, details {
@@ -2252,7 +2247,7 @@
 </p>
 </div>
 <div class="equipment-grid">
-<div class="equipment-item rent-click" role="link" tabindex="0" data-href="arenda-ekstraktora-dlya-mebeli-i-kovrov.htm" onclick="window.location.href=this.dataset.href;">
+<div class="equipment-item rent-click" onclick="window.location.href='arenda-ekstraktora-dlya-mebeli-i-kovrov.html'" style="cursor:pointer;">
 <div class="equipment-tag">Что сдаём</div>
 <div class="equipment-title">Экстрактор для мягкой мебели и ковров</div>
 <div class="equipment-text">
@@ -2803,16 +2798,4 @@ document.addEventListener('DOMContentLoaded', function () {
       console.warn('Не удалось получить данные рейтинга Авито', err);
     });
 });
-</script>
-<script>
-document.addEventListener('keydown', function(e){
-  const el = document.activeElement;
-  if(!el) return;
-  if(el.classList && el.classList.contains('rent-click') && (e.key === 'Enter' || e.key === ' ')){
-    e.preventDefault();
-    el.click();
-  }
-});
-</script>
-
-</body></html>
+</script></body></html>
