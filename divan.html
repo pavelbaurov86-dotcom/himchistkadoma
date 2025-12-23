@@ -17,7 +17,7 @@
 <meta content="#FFD400" name="theme-color"/>
 <!-- END FAVICONS -->
 <meta charset="utf-8"/>
-<title>Химчистка диванов на дому в Коврове — удаление пятен и запахов | HimchistkaDoma</title>
+<title>Химчистка диванов на дому — Ковров, Владимир и область</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Химчистка диванов на дому в Коврове и районе. Удаляем пятна, запахи, шерсть животных. Безопасно для детей и животных. Выезд бесплатно, оплата после результата." name="description"/>
 <link href="https://himchistkadoma.ru/divan.html" rel="canonical"/>
@@ -1468,6 +1468,40 @@
     max-width: 400px !important;
     max-height: 400px !important;
 }
+
+        /* Mobile menu: stacked + centered */
+        .mobile-menu-nav{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:10px;
+            text-align:center;
+        }
+        .mobile-menu-nav a{
+            display:block;
+            width:100%;
+            padding:10px 12px;
+            border-radius:12px;
+            text-decoration:none;
+            color:#fff;
+            white-space:normal;
+            word-break:break-word;
+        }
+        .mobile-menu-nav a:hover{ background: rgba(255,255,255,0.06); }
+        .mobile-menu-call{
+            margin-top:6px;
+            border:1px solid rgba(244,200,66,0.55);
+        }
+
+        /* Mobile call bar: show only after scroll */
+        .mobile-call-bar{
+            transform: translateY(110%);
+            transition: transform .25s ease;
+        }
+        .mobile-call-bar.show{
+            transform: translateY(0);
+        }
+    
 </style>
 <style>
 .card, .benefit, .step, .promo, .equipment-item, .review, .contact-block, .about-fact, .gallery-item, details {
@@ -1947,7 +1981,15 @@
 </div>
 </button>
 </div>
-<div class="mobile-menu" id="mobile-menu"><a href="/">Химчистка мебели</a><a href="/divan.html">Химчистка диванов</a><a href="/arenda-ekstraktora-dlya-mebeli-i-kovrov.html">Аренда экстрактора</a><a href="/arenda-paroochistitelya.html">Аренда пароочистителя</a><a href="tel:+79157548115">Позвонить</a></div>
+<div class="mobile-menu" id="mobile-menu">
+  <nav class="mobile-menu-nav">
+    <a href="/"><span>Химчистка мебели</span></a>
+    <a href="/divan.html"><span>Химчистка диванов</span></a>
+    <a href="/arenda-ekstraktora.html"><span>Аренда экстрактора</span></a>
+    <a href="/arenda-paroochistitelya.html"><span>Аренда пароочистителя</span></a>
+    <a class="mobile-menu-call" href="tel:+79157548115">Позвонить</a>
+  </nav>
+</div>
 </header>
 <main>
 <!-- HERO -->
@@ -1959,8 +2001,8 @@
 <span class="hero-badge-desktop">Гарантия результата</span>
 <span class="hero-badge-mobile">Рейтинг 4.9 • 201 отзыв • <a href="https://www.avito.ru/brands/i1033191?gdlkerfdnwq=101&amp;iid=2629033365&amp;item_type=str_trx&amp;page_from=from_item_header&amp;page_from=from_item_card&amp;iid=2629033365" rel="noopener" target="_blank">Смотреть на Авито</a></span>
 </div>
-<h1 class="hero-title">Химчистка диванов на дому в Коврове</h1>
-<p class="hero-subtitle">Профессионально почистим прямые и угловые диваны от пятен, запахов и шерсти. Работаем на дому в Коврове: выезд бесплатно, оплата после результата.</p>
+<h1 class="hero-title">Химчистка диванов на дому</h1>
+<p class="hero-subtitle">Оказываем услуги химчистки диванов в Коврове, Владимире и населённых пунктах Владимирской области.<br/>Выезд на дом, профессиональные средства, безопасно для детей и животных.</p>
 <ul class="hero-list"><li>Химчистка дивана на дому</li><li>Удаление запахов и пятен</li><li>Безопасно для детей и животных</li><li>Выезд по Коврову бесплатно</li></ul>
 <div class="hero-cta">
 <button class="btn btn-primary" onclick="scrollToId('form-block')">Заказать химчистку дивана</button>
@@ -2336,4 +2378,58 @@
       <a href="/arenda-paroochistitelya.html">Аренда пароочистителя</a>
 </div>
 </div>
-</footer></body></html>
+</footer><div class="mobile-call-bar" id="mobile-call-bar">
+<a class="mobile-call-btn" href="tel:+79157548115">Позвонить</a>
+</div>
+
+<script>
+/* Mobile burger menu (shared across pages) */
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const burger = document.getElementById('burger');
+  if (!menu || !burger) return;
+  const isOpen = menu.classList.contains('open');
+  if (isOpen) {
+    menu.classList.remove('open');
+    burger.classList.remove('active');
+  } else {
+    menu.classList.add('open');
+    burger.classList.add('active');
+  }
+}
+function closeMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const burger = document.getElementById('burger');
+  if (!menu || !burger) return;
+  menu.classList.remove('open');
+  burger.classList.remove('active');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const menu = document.getElementById('mobile-menu');
+  if (menu) {
+    menu.addEventListener('click', (e) => {
+      const t = e.target;
+      if (t && t.tagName === 'A') closeMobileMenu();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMobileMenu();
+  });
+});
+
+        // Show "Call" bar after scrolling on mobile
+        (function(){
+            const bar = document.getElementById('mobile-call-bar');
+            if(!bar) return;
+            const threshold = 180; // px
+            const onScroll = () => {
+                if (window.innerWidth <= 768 && window.scrollY > threshold) bar.classList.add('show');
+                else bar.classList.remove('show');
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            onScroll();
+        })();
+    
+</script>
+</body></html>
