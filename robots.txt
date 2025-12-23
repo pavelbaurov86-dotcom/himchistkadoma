@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
 
+# Закрываем служебное и мусор (на будущее)
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /*?*
+Disallow: /*&*
+
+# Указываем главный хост
+Host: himchistkadoma.ru
+
+# Sitemap
 Sitemap: https://himchistkadoma.ru/sitemap.xml
