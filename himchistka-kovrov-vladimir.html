@@ -1857,107 +1857,60 @@
     .call-text-mobilehide { display:none !important; }
 }
 </style>
-<script type="application/ld+json">[
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "HimchistkaDoma",
-    "url": "https://himchistkadoma.ru/",
-    "telephone": "+7 915 754-81-15",
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Ковров"
-      }
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Ковров",
-      "addressCountry": "RU"
-    },
-    "openingHours": "Mo-Su 09:00-21:00"
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Сколько стоит химчистка ковра в Коврове?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Цена зависит от размера ковра (прямой/угловой), материала, степени загрязнения и степени загрязнения. Перед началом работ мы оцениваем ковёр и называем итоговую стоимость."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Сколько времени занимает химчистка?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Обычно 1–2 часа: осмотр, обработка пятен, основная чистка и экстракция. При сильных загрязнениях время может увеличиться."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Сколько сохнет ковёр после химчистки?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "В среднем 4–8 часов. Скорость высыхания зависит от ткани, вентиляции и температуры в помещении."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Убираете ли запах мочи и запах животных?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Да, используем средства для нейтрализации запаха и глубокую экстракцию. В сложных случаях может потребоваться повторная обработка проблемной зоны."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Безопасно ли это для детей и домашних животных?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Используем профессиональные средства для бытовых условий. После чистки важно проветрить помещение и дождаться полного высыхания."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Выезд по Коврову платный?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Выезд по Коврову бесплатный. По району — по договорённости."
-        }
-      }
-    ]
-  }
-]</script><script type="application/ld+json">{
+
+
+<script type="application/ld+json">
+{
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "HimchistkaDoma",
-  "url": "https://himchistkadoma.ru/",
-  "telephone": "+79157548115",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Ковров",
-    "addressCountry": "RU"
-  },
-  "openingHours": "Mo-Su 09:00-21:00",
-  "areaServed": [
+  "@graph": [
     {
-      "@type": "City",
-      "name": "Ковров"
+      "@type": "WebSite",
+      "@id": "https://himchistkadoma.ru/#website",
+      "url": "https://himchistkadoma.ru/",
+      "name": "Химчистка Дома",
+      "inLanguage": "ru-RU"
     },
     {
-      "@type": "City",
-      "name": "Владимир"
+      "@type": [
+        "LocalBusiness",
+        "CleaningService"
+      ],
+      "@id": "https://himchistkadoma.ru/#business",
+      "name": "Химчистка Дома",
+      "url": "https://himchistkadoma.ru/",
+      "telephone": "+79157548115",
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Владимирская область"
+        }
+      ]
     },
     {
-      "@type": "AdministrativeArea",
-      "name": "Владимирская область"
+      "@type": "Service",
+      "@id": "https://himchistkadoma.ru/himchistka-kovrov-vladimir.html#service",
+      "name": "Химчистка ковров на дому",
+      "serviceType": "Химчистка ковров на дому",
+      "provider": {
+        "@id": "https://himchistkadoma.ru/#business"
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Владимирская область"
+        },
+        {
+          "@type": "City",
+          "name": "Владимир"
+        }
+      ],
+      "url": "https://himchistkadoma.ru/himchistka-kovrov-vladimir.html",
+      "inLanguage": "ru-RU"
     }
   ]
-}</script></head><body>
+}
+</script>
+</head><body>
 <header>
 <div class="container header-inner">
 <a class="logo" href="index.html">
@@ -2003,7 +1956,7 @@
 </div>
 <h1>Химчистка ковров во Владимире</h1>
 <p class="hero-subtitle">Глубокая чистка ковров с выездом на дом. Удаляем пятна, запахи, пылевого клеща. Безопасно для детей и аллергиков.</p>
-<ul class="hero-list"><li>Химчистка ковра на дому</li><li>Удаление запахов и пятен</li><li>Безопасно для детей и животных</li><li>Выезд по Коврову бесплатно</li></ul>
+<ul class="hero-list"><li>Химчистка ковра на дому</li><li>Удаление запахов и пятен</li><li>Безопасно для детей и животных</li><li>Выезд по Владимиру бесплатно</li></ul>
 <div class="hero-cta">
 <button class="btn btn-primary" onclick="scrollToId('form-block')">Заказать химчистку ковра</button>
 <button class="btn btn-outline btn-small" onclick="location.href='tel:+79157548115'">Позвонить</button>
@@ -2223,7 +2176,7 @@
 <div class="contact-row">
 <span class="contact-label">Ещё раз про заявку</span>
 <span class="contact-value">
-                            Присылайте фото мебели и кратко описывайте задачу. Мы подскажем, что реально удалить, и озвучим честную цену без сюрпризов на месте.
+                            Присылайте фото и кратко описывайте задачу. Мы подскажем, что реально удалить, и озвучим честную цену без сюрпризов на месте.
                         </span>
 </div>
 <button class="btn btn-primary" onclick="scrollToId('form-block')" style="margin-top:10px;">Оставить заявку</button>
@@ -2242,7 +2195,7 @@
 
     <h2 style="margin-bottom:10px">Профессиональная химчистка ковров на дому</h2>
     <p class="about-text">
-      Делаем <strong>химчистку ковров на дому</strong>: удаляем пятна, пыль и запахи, освежаем спальное место и помогаем снизить количество аллергенов. Работаем в Коврове, Владимире и по Владимирской области — выезжаем в удобное время и используем профессиональное оборудование (экстракция) для глубокой очистки.
+      Делаем <strong>химчистку ковров на дому</strong>: удаляем пятна, пыль и запахи, освежаем и помогаем снизить количество аллергенов. Работаем в Коврове, Владимире и по Владимирской области — выезжаем в удобное время и используем профессиональное оборудование (экстракция) для глубокой очистки.
     </p>
 
     <h3 style="margin:26px 0 10px">Что удаляем</h3>
