@@ -1469,6 +1469,19 @@
     max-width: 400px !important;
     max-height: 400px !important;
 }
+
+/* === MOBILE MENU FIX (auto-added) === */
+@media (max-width: 960px){
+  nav { display: none !important; }
+  .burger { display: inline-flex !important; }
+  .header-right { display: none !important; }
+}
+.mobile-menu{
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+body.menu-open{ overflow: hidden; }
 </style>
 <style>
 .card, .benefit, .step, .promo, .equipment-item, .review, .contact-block, .about-fact, .gallery-item, details {
@@ -1876,11 +1889,12 @@
 <h1 class="hero-title">Выездная химчистка мебели и ковров — Владимир, Ковров, Доброград</h1>
 
 <div class="geo-usp" style="max-width: 920px; margin: 14px auto 0; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,.85); box-shadow: 0 6px 18px rgba(0,0,0,.06);">
- 
+  <p style="margin:0; font-size: 16px; line-height: 1.45;">
+  </p>
 </div>
 
 <p class="hero-subtitle">Работаем по городу и области: <strong>Владимир</strong>, <strong>Ковров</strong>, <strong>Доброград</strong> и ближайшие населённые пункты.
-    <strong>Выезд бесплатный</strong>, <strong>оплата после результата</strong>. Подбираем химию под ткань/кожу, аккуратно убираем пятна и запахи </p>
+    <strong>Выезд бесплатный</strong>, <strong>оплата после результата</strong>. Подбираем химию под ткань/кожу, аккуратно убираем пятна и запахи.</p>
 <ul class="hero-list">
 <li>Химчистка на дому</li>
 <li>Выезд бесплатно</li>
@@ -2551,6 +2565,7 @@
 <div>
 <br/>
 <a href="#">Политика конфиденциальности</a>
+</div>
 </div>
 </div>
 
