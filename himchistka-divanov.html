@@ -1506,6 +1506,19 @@
             transform: translateY(0);
         }
     
+
+/* === MOBILE MENU FIX (auto-added) === */
+@media (max-width: 960px){
+  nav { display: none !important; }
+  .burger { display: inline-flex !important; }
+  .header-right { display: none !important; }
+}
+.mobile-menu{
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+body.menu-open{ overflow: hidden; }
 </style>
 <style>
 .card, .benefit, .step, .promo, .equipment-item, .review, .contact-block, .about-fact, .gallery-item, details {
@@ -2042,7 +2055,7 @@
 <section class="section-dark">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Выберите город <span> </span></h2>
+      <h2 class="section-title">Выберите  <span>(город)</span></h2>
       <div class="section-sub">Откройте страницу под ваш город, чтобы увидеть точные условия и цены.</div>
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
