@@ -1837,6 +1837,14 @@ body.menu-open{ overflow: hidden; }
     .call-text-mobilehide { display:none !important; }
 }
 </style>
+
+<style>
+/* clickable service cards */
+.card-link{display:block;}
+.card-link:focus{outline:2px solid rgba(244,200,66,.9); outline-offset:4px; border-radius:20px;}
+article.card{cursor:pointer;}
+</style>
+
 </head><body>
 <header>
 <div class="container header-inner">
@@ -1869,7 +1877,7 @@ body.menu-open{ overflow: hidden; }
 </button>
 </div>
 <div class="mobile-menu" id="mobile-menu">
-<div class="mobile-menu-nav"><a href="#services" onclick="closeMobileMenu(); scrollToId('services'); return false;">Услуги и цены</a><a href="#works" onclick="closeMobileMenu(); scrollToId('works'); return false;">Наша работа</a><a href="#form-block" onclick="closeMobileMenu(); scrollToId('form-block'); return false;">Записаться</a><a href="#promo" onclick="closeMobileMenu(); scrollToId('promo'); return false;">Акции</a><a href="#rent" onclick="closeMobileMenu(); scrollToId('rent'); return false;">Аренда</a><a href="#equipment" onclick="closeMobileMenu(); scrollToId('equipment'); return false;">Оборудование</a><a href="#about" onclick="closeMobileMenu(); scrollToId('about'); return false;">О компании</a><a href="#contacts" onclick="closeMobileMenu(); scrollToId('contacts'); return false;">Контакты</a></div>
+<div class="mobile-menu-nav"><a href="/" onclick="closeMobileMenu()">Главная</a><a href="/himchistka-divanov.html" onclick="closeMobileMenu()">Химчистка диванов</a><a href="/himchistka-matrasov.html" onclick="closeMobileMenu()">Химчистка матрасов</a><a href="/himchistka-kovrov.html" onclick="closeMobileMenu()">Химчистка ковров</a><a href="/himchistka-kresel-i-stulev.html" onclick="closeMobileMenu()">Кресла и стулья</a><a href="#price" onclick="closeMobileMenu(); scrollToId('price'); return false;">Цены</a><a href="#contacts" onclick="closeMobileMenu(); scrollToId('contacts'); return false;">Контакты</a><a href="#works" onclick="closeMobileMenu(); scrollToId('works'); return false;">Фото работ</a><a href="#promo" onclick="closeMobileMenu(); scrollToId('promo'); return false;">Акции</a><a href="#rent" onclick="closeMobileMenu(); scrollToId('rent'); return false;">Аренда оборудования</a><a href="#about" onclick="closeMobileMenu(); scrollToId('about'); return false;">О компании</a></div>
 <div class="mobile-menu-footer">
 <a class="mobile-menu-phone" href="tel:+79157548115">8 915 754-81-15</a>
 <div class="mobile-menu-time">Пн–Вс 9:00–21:00</div>
@@ -1934,56 +1942,56 @@ body.menu-open{ overflow: hidden; }
 </p>
 </div>
 <div class="cards-grid">
-<article class="card">
+<article class="card"><a class="card-link" href="/himchistka-divanov.html">
 <div class="card-top">
 <div>
 <div class="card-icon">🛋</div>
 </div>
 <div class="card-tag">Хит</div>
 </div>
-<h3 class="card-title"><a href="divan.html#prices">Химчистка дивана</a></h3>
-<div class="card-title-mobile"><a href="divan.html#prices">Химчистка дивана от 3 500 ₽ за диван</a></div>
+<h3 class="card-title"><a href="/himchistka-divanov.html">Химчистка дивана</a></h3>
+<div class="card-title-mobile"><a href="/himchistka-divanov.html">Химчистка дивана от 3 500 ₽ за диван</a></div>
 <p class="card-text mobile-hide">
                         Прямые и угловые, выкатные, со спальным местом. Удаляем пятна от еды, напитков, животных, ручек.
                     </p>
 <div class="card-price">от 3 500 ₽ <small>за диван</small></div>
-</article>
-<article class="card">
+</a></article>
+<article class="card"><a class="card-link" href="/himchistka-matrasov.html">
 <div class="card-top">
 <div class="card-icon">🛏</div>
 <div class="card-tag">Здоровье</div>
 </div>
-<h3 class="card-title"><a href="matras.html#prices">Химчистка матраса</a></h3>
-<div class="card-title-mobile"><a href="matras.html#prices">Химчистка матраса от 1 500 ₽ за сторону</a></div>
+<h3 class="card-title"><a href="/himchistka-matrasov.html">Химчистка матраса</a></h3>
+<div class="card-title-mobile"><a href="/himchistka-matrasov.html">Химчистка матраса от 1 500 ₽ за сторону</a></div>
 <p class="card-text mobile-hide">
                         Глубокая чистка с обеззараживанием. Боремся с запахами и пылевым клещом, подходит детям и аллергикам.
                     </p>
 <div class="card-price">от 1 500 ₽ <small>за сторону</small></div>
-</article>
-<article class="card">
+</a></article>
+<article class="card"><a class="card-link" href="/himchistka-kresel-i-stulev.html">
 <div class="card-top">
 <div class="card-icon">🪑</div>
 <div class="card-tag">Дом и офис</div>
 </div>
-<h3 class="card-title"><a href="kresla-i-stulya.html#prices">Химчистка кресла и стула</a></h3>
-<div class="card-title-mobile"><a href="kresla-i-stulya.html#prices">Химчистка кресла и стула от 300 ₽</a></div>
+<h3 class="card-title"><a href="/himchistka-kresel-i-stulev.html">Химчистка кресла и стула</a></h3>
+<div class="card-title-mobile"><a href="/himchistka-kresel-i-stulev.html">Химчистка кресла и стула от 300 ₽</a></div>
 <p class="card-text mobile-hide">
                         Обновим посадочные места, подлокотники и спинки. Для дома, кафе и офисов.
                     </p>
 <div class="card-price">от 300 ₽ <small>за единицу</small></div>
-</article>
-<article class="card">
+</a></article>
+<article class="card"><a class="card-link" href="/himchistka-kovrov.html">
 <div class="card-top">
 <div class="card-icon">🧼</div>
 <div class="card-tag">Ковры</div>
 </div>
-<h3 class="card-title"><a href="kovry.html#prices">Химчистка ковра</a></h3>
-<div class="card-title-mobile"><a href="kovry.html#prices">Химчистка ковра от 350 ₽ за м²</a></div>
+<h3 class="card-title"><a href="/himchistka-kovrov.html">Химчистка ковра</a></h3>
+<div class="card-title-mobile"><a href="/himchistka-kovrov.html">Химчистка ковра от 350 ₽ за м²</a></div>
 <p class="card-text mobile-hide">
                         Чистим ковры и паласы на дому без вывоза, убираем запахи и сложные загрязнения.
                     </p>
 <div class="card-price">от 350 ₽ <small>за м²</small></div>
-</article>
+</a></article>
 </div>
 <div style="margin-top:26px;">
 <p class="prices-note">
