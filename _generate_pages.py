@@ -8,6 +8,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 
+CRITICAL_CSS = (ROOT / "assets" / "css" / "critical.css").read_text(encoding="utf-8").strip()
+
+HEAD_ASSETS = f"""<style>{CRITICAL_CSS}</style>
+<link rel="preload" href="assets/css/main.css" as="style"/>
+<link rel="preload" href="assets/fonts/nwpStKy2OAdR1K-IwhWudF-R3wsaZfrc.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="assets/css/fonts.css" media="print" onload="this.media='all'"/>
+<link rel="stylesheet" href="assets/css/main.css" media="print" onload="this.media='all'"/>
+<noscript><link rel="stylesheet" href="assets/css/fonts.css"/><link rel="stylesheet" href="assets/css/main.css"/></noscript>"""
+
 HEAD_COMMON = """<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -45,10 +54,7 @@ HEAD_COMMON = """<!DOCTYPE html>
 <link rel="icon" href="assets/favicon/favicon_32x32.png" sizes="32x32" type="image/png"/>
 <link rel="apple-touch-icon" href="assets/favicon/favicon_180x180.png" sizes="180x180"/>
 <link rel="manifest" href="site.webmanifest"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"/>
-<link rel="stylesheet" href="assets/css/main.css"/>
+{head_assets}
 </head>
 <body>
 """
@@ -809,6 +815,7 @@ def write_service_page(slug: str, data: dict) -> None:
             slug=slug,
             og_title=esc(data["h1"]),
             geo_place="Владимир, Ковров, Доброград",
+            head_assets=HEAD_ASSETS,
         )
         + HEADER
         + body
@@ -934,6 +941,7 @@ def write_city_page(filename: str, key: str, city: str, h1: str, title: str, des
             slug=filename,
             og_title=esc(h1),
             geo_place=city,
+            head_assets=HEAD_ASSETS,
         )
         + HEADER
         + body
@@ -1071,6 +1079,7 @@ def write_rental(slug: str, data: dict) -> None:
             slug=slug,
             og_title=esc(data["h1"]),
             geo_place="Ковров",
+            head_assets=HEAD_ASSETS,
         )
         + HEADER
         + body
