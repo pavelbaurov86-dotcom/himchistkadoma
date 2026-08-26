@@ -288,16 +288,18 @@
       }
 
       function updateArrows() {
-        var maxScroll = Math.max(0, grid.scrollWidth - grid.clientWidth);
-        var left = grid.scrollLeft || 0;
-        var eps = 16;
-        var noScroll = maxScroll <= eps;
-        // Wide threshold: scroll-snap / subpixels often leave 1–10px at the “edge”
-        var atStart = noScroll || left <= eps;
-        var atEnd = noScroll || left >= maxScroll - eps;
-
-        setArrowState(btnLeft, atStart);
-        setArrowState(btnRight, atEnd);
+        if (wrapper._arrowRaf) return;
+        wrapper._arrowRaf = requestAnimationFrame(function () {
+          wrapper._arrowRaf = 0;
+          var maxScroll = Math.max(0, grid.scrollWidth - grid.clientWidth);
+          var left = grid.scrollLeft || 0;
+          var eps = 16;
+          var noScroll = maxScroll <= eps;
+          var atStart = noScroll || left <= eps;
+          var atEnd = noScroll || left >= maxScroll - eps;
+          setArrowState(btnLeft, atStart);
+          setArrowState(btnRight, atEnd);
+        });
       }
 
       if (btnLeft) {
@@ -333,12 +335,7 @@
       });
 
       updateArrows();
-      requestAnimationFrame(function () {
-        updateArrows();
-        requestAnimationFrame(updateArrows);
-      });
-      setTimeout(updateArrows, 50);
-      setTimeout(updateArrows, 300);
+      requestAnimationFrame(updateArrows);
     });
   }
 
@@ -611,9 +608,12 @@
   function initHeaderScroll() {
     var header = document.querySelector(".site-header");
     if (!header) return;
+    var scrolled = false;
     function onScroll() {
-      if (window.scrollY > 12) header.classList.add("is-scrolled");
-      else header.classList.remove("is-scrolled");
+      var next = window.scrollY > 12;
+      if (next === scrolled) return;
+      scrolled = next;
+      header.classList.toggle("is-scrolled", scrolled);
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -627,16 +627,6 @@
     function show(n) {
       n.classList.add("is-visible");
     }
-
-    function inView(n) {
-      var r = n.getBoundingClientRect();
-      var vh = window.innerHeight || document.documentElement.clientHeight;
-      return r.top < vh * 0.92 && r.bottom > 0;
-    }
-
-    nodes.forEach(function (n) {
-      if (inView(n)) show(n);
-    });
 
     if (!("IntersectionObserver" in window)) {
       nodes.forEach(show);
@@ -656,15 +646,8 @@
     );
 
     nodes.forEach(function (n) {
-      if (!n.classList.contains("is-visible")) io.observe(n);
+      io.observe(n);
     });
-
-    // Safety: never leave content invisible if observer misses
-    window.setTimeout(function () {
-      nodes.forEach(function (n) {
-        if (!n.classList.contains("is-visible") && inView(n)) show(n);
-      });
-    }, 1200);
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -676,12 +659,24 @@
       }
     }
 
-    safe(initReveal);
+    function whenIdle(fn) {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(function () {
+          safe(fn);
+        }, { timeout: 2000 });
+      } else {
+        setTimeout(function () {
+          safe(fn);
+        }, 1);
+      }
+    }
+
+    safe(initHeaderScroll);
     safe(function () { initUpload(document); });
     safe(function () { initPhoneMasks(document); });
-    safe(initGalleries);
-    safe(initBeforeAfter);
-    safe(initLightbox);
-    safe(initHeaderScroll);
+    whenIdle(initReveal);
+    whenIdle(initGalleries);
+    whenIdle(initBeforeAfter);
+    whenIdle(initLightbox);
   });
 })();
