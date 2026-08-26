@@ -12,16 +12,33 @@ HEAD_COMMON = """<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8"/>
+<script>document.documentElement.classList.add("js");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="x-ua-compatible" content="ie=edge"/>
 <title>{title}</title>
 <meta name="description" content="{description}"/>
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"/>
+<meta name="googlebot" content="index,follow"/>
+<meta name="yandex" content="index,follow"/>
+<meta name="format-detection" content="telephone=yes"/>
+<meta name="geo.region" content="RU-VLA"/>
+<meta name="geo.placename" content="{geo_place}"/>
+<meta name="author" content="HimchistkaDoma"/>
 <link rel="canonical" href="https://himchistkadoma.ru/{slug}"/>
 <meta property="og:type" content="website"/>
 <meta property="og:locale" content="ru_RU"/>
+<meta property="og:site_name" content="HimchistkaDoma"/>
 <meta property="og:url" content="https://himchistkadoma.ru/{slug}"/>
 <meta property="og:title" content="{og_title}"/>
 <meta property="og:description" content="{description}"/>
 <meta property="og:image" content="https://himchistkadoma.ru/assets/img/og-image.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="{og_title}"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="{og_title}"/>
+<meta name="twitter:description" content="{description}"/>
+<meta name="twitter:image" content="https://himchistkadoma.ru/assets/img/og-image.jpg"/>
 <meta name="theme-color" content="#F0B429"/>
 <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon"/>
 <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml"/>
@@ -30,6 +47,7 @@ HEAD_COMMON = """<!DOCTYPE html>
 <link rel="manifest" href="/site.webmanifest"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"/>
 <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
@@ -228,7 +246,21 @@ def render_faq_jsonld(items: list[dict]) -> str:
     )
 
 
-def render_business_jsonld(name: str, city: str | None = None) -> str:
+SAME_AS = [
+    "https://vk.com/kovrov_himchistka33",
+    "https://t.me/himchistka_33",
+    "https://wa.me/79157548115",
+]
+
+
+def render_business_jsonld(
+    name: str,
+    city: str | None = None,
+    *,
+    page_url: str | None = None,
+    service_type: str | None = None,
+    price: str | None = None,
+) -> str:
     area = [
         {"@type": "City", "name": "Владимир"},
         {"@type": "City", "name": "Ковров"},
@@ -238,13 +270,19 @@ def render_business_jsonld(name: str, city: str | None = None) -> str:
         area = [{"@type": "City", "name": city}] + [
             a for a in area if a["name"] != city
         ]
-    data = {
+    data: dict = {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "CleaningService",
+        "@id": (page_url or "https://himchistkadoma.ru/") + "#business",
         "name": name,
-        "url": "https://himchistkadoma.ru/",
+        "url": page_url or "https://himchistkadoma.ru/",
         "telephone": "+7-915-754-81-15",
         "image": "https://himchistkadoma.ru/assets/img/og-image.jpg",
+        "logo": "https://himchistkadoma.ru/assets/favicon/favicon_512x512.png",
+        "priceRange": "₽₽",
+        "currenciesAccepted": "RUB",
+        "paymentAccepted": "Cash, Card",
+        "description": "Выездная химчистка мягкой мебели и ковров на дому во Владимире, Коврове и Доброграде.",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": city or "Ковров",
@@ -252,19 +290,100 @@ def render_business_jsonld(name: str, city: str | None = None) -> str:
             "addressCountry": "RU",
         },
         "areaServed": area,
-        "openingHours": "Mo-Su 09:00-21:00",
+        "sameAs": SAME_AS,
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+            ],
+            "opens": "09:00",
+            "closes": "21:00",
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+7-915-754-81-15",
+            "contactType": "customer service",
+            "areaServed": "RU",
+            "availableLanguage": ["Russian"],
+        },
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.9",
             "reviewCount": "201",
             "bestRating": "5",
+            "worstRating": "1",
         },
     }
+    if service_type and price:
+        data["hasOfferCatalog"] = {
+            "@type": "OfferCatalog",
+            "name": service_type,
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": service_type,
+                        "serviceType": service_type,
+                        "provider": {"@id": data["@id"]},
+                    },
+                    "priceCurrency": "RUB",
+                    "price": price,
+                    "availability": "https://schema.org/InStock",
+                    "url": page_url or "https://himchistkadoma.ru/",
+                }
+            ],
+        }
     return (
         '<script type="application/ld+json">\n'
         + json.dumps(data, ensure_ascii=False, indent=2)
         + "\n</script>"
     )
+
+
+def render_breadcrumbs(items: list[tuple[str, str]]) -> tuple[str, str]:
+    """items: (href, label). Last item may use empty href for current page."""
+    crumbs = []
+    ld_items = []
+    for i, (href, label) in enumerate(items, start=1):
+        if href:
+            crumbs.append(f'<a href="{esc(href)}">{esc(label)}</a>')
+            item_url = (
+                f"https://himchistkadoma.ru{href}" if href.startswith("/") else href
+            )
+            ld_items.append(
+                {
+                    "@type": "ListItem",
+                    "position": i,
+                    "name": label,
+                    "item": item_url,
+                }
+            )
+        else:
+            crumbs.append(f'<span aria-current="page">{esc(label)}</span>')
+            ld_items.append({"@type": "ListItem", "position": i, "name": label})
+    nav = (
+        '<nav class="breadcrumbs" aria-label="Хлебные крошки">'
+        + '<span class="breadcrumbs-sep"> / </span>'.join(crumbs)
+        + "</nav>"
+    )
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": ld_items,
+    }
+    script = (
+        '<script type="application/ld+json">\n'
+        + json.dumps(ld, ensure_ascii=False, indent=2)
+        + "\n</script>"
+    )
+    return nav, script
 
 
 def render_cards(cards: list[dict]) -> str:
@@ -403,11 +522,13 @@ CHAIR_FAQ = [
 
 SERVICES = {
     "himchistka-divanov.html": {
-        "title": "Химчистка диванов с выездом на дом — цены | Владимир, Ковров, Доброград | HimchistkaDoma",
-        "description": "Профессиональная выездная химчистка диванов: Владимир, Ковров, Доброград и область. Удаляем пятна и запахи. Выезд бесплатно, оплата после результата.",
+        "title": "Химчистка диванов на дому — цены | Владимир, Ковров",
+        "description": "Химчистка диванов на дому во Владимире, Коврове и Доброграде. Удаляем пятна и запахи. Выезд бесплатно, оплата после результата. От 3 500 ₽.",
         "h1": "Выездная химчистка диванов — Владимир, Ковров, Доброград",
         "subtitle": "Прямые и угловые, выкатные, со спальным местом. Удаляем пятна от еды, напитков, животных. Цена по фото — фиксированная.",
         "price_from": "от 3&nbsp;500&nbsp;₽",
+        "offer_price": "3500",
+        "service_type": "Химчистка диванов",
         "cards": [
             {"icon": "🛋", "tag": "Хит", "title": "Прямой диван", "text": "2–3 посадочных места, стандартная чистка с экстракцией.", "price": "от 3&nbsp;500&nbsp;₽", "unit": "за диван"},
             {"icon": "🛋", "tag": "Популярно", "title": "Угловой диван", "text": "Угловые и П-образные. Учитываем подушки и спальное место.", "price": "от 4&nbsp;500&nbsp;₽", "unit": "за диван"},
@@ -435,11 +556,13 @@ SERVICES = {
         "service_name": "Химчистка диванов HimchistkaDoma",
     },
     "himchistka-matrasov.html": {
-        "title": "Химчистка матрасов с выездом на дом — цены | Владимир, Ковров, Доброград | HimchistkaDoma",
-        "description": "Выездная химчистка матрасов во Владимире, Коврове и Доброграде. Удаляем пятна, запахи и аллергены. Безопасно для детей. Выезд бесплатно.",
+        "title": "Химчистка матрасов на дому — цены | Владимир, Ковров",
+        "description": "Химчистка матрасов на дому во Владимире, Коврове и Доброграде. Удаляем пятна, запахи и аллергены. Безопасно для детей. От 1 500 ₽.",
         "h1": "Выездная химчистка матрасов — Владимир, Ковров, Доброград",
         "subtitle": "Глубокая чистка с обеззараживанием. Боремся с запахами и пылевым клещом — подходит детям и аллергикам.",
         "price_from": "от 1&nbsp;500&nbsp;₽",
+        "offer_price": "1500",
+        "service_type": "Химчистка матрасов",
         "cards": [
             {"icon": "🛏", "tag": "Стандарт", "title": "Одна сторона", "text": "Чистка рабочей стороны матраса любой жёсткости.", "price": "от 1&nbsp;500&nbsp;₽", "unit": "за сторону"},
             {"icon": "🛏", "tag": "Рекомендуем", "title": "Две стороны", "text": "Полная обработка матраса с двух сторон.", "price": "от 2&nbsp;800&nbsp;₽", "unit": "за матрас"},
@@ -466,11 +589,13 @@ SERVICES = {
         "service_name": "Химчистка матрасов HimchistkaDoma",
     },
     "himchistka-kovrov.html": {
-        "title": "Химчистка ковров с выездом на дом — цены | Владимир, Ковров, Доброград | HimchistkaDoma",
-        "description": "Химчистка ковров и паласов на дому во Владимире, Коврове и Доброграде. Без вывоза. От 350 ₽/м². Выезд бесплатно.",
+        "title": "Химчистка ковров на дому — цены за м² | Владимир, Ковров",
+        "description": "Химчистка ковров и паласов на дому во Владимире, Коврове и Доброграде без вывоза. От 350 ₽/м². Выезд бесплатно, оплата после результата.",
         "h1": "Выездная химчистка ковров — Владимир, Ковров, Доброград",
         "subtitle": "Чистим ковры и паласы на дому без вывоза. Убираем запахи, шерсть животных и сложные загрязнения.",
         "price_from": "от 350&nbsp;₽/м²",
+        "offer_price": "350",
+        "service_type": "Химчистка ковров",
         "cards": [
             {"icon": "🧼", "tag": "Ковры", "title": "Ковёр с коротким ворсом", "text": "Стандартная чистка с экстракцией.", "price": "от 350&nbsp;₽", "unit": "за м²"},
             {"icon": "🧼", "title": "Длинный ворс / шегги", "text": "Более тщательная проработка и сушка.", "price": "от 450&nbsp;₽", "unit": "за м²"},
@@ -497,11 +622,13 @@ SERVICES = {
         "service_name": "Химчистка ковров HimchistkaDoma",
     },
     "himchistka-kresel-i-stulev.html": {
-        "title": "Химчистка кресел и стульев с выездом — цены | Владимир, Ковров, Доброград | HimchistkaDoma",
-        "description": "Химчистка кресел и стульев на дому и в офисе: Владимир, Ковров, Доброград. От 300 ₽. Выезд бесплатно.",
+        "title": "Химчистка кресел и стульев на дому — цены | Ковров",
+        "description": "Химчистка кресел и стульев на дому и в офисе во Владимире, Коврове и Доброграде. От 300 ₽. Выезд бесплатно, оплата после результата.",
         "h1": "Выездная химчистка кресел и стульев — Владимир, Ковров, Доброград",
         "subtitle": "Обновим посадочные места, подлокотники и спинки. Для дома, кафе и офисов.",
         "price_from": "от 300&nbsp;₽",
+        "offer_price": "300",
+        "service_type": "Химчистка кресел и стульев",
         "cards": [
             {"icon": "🪑", "tag": "Дом", "title": "Стул мягкий", "text": "Сиденье и спинка. Идеально для комплектов.", "price": "от 300&nbsp;₽", "unit": "за шт."},
             {"icon": "🪑", "title": "Кресло домашнее", "text": "Посадочное место, подлокотники, спинка.", "price": "от 800&nbsp;₽", "unit": "за шт."},
@@ -531,18 +658,18 @@ SERVICES = {
 
 CITY_PAGES = [
     # (filename, service_key, city_name, h1, title, description)
-    ("himchistka-divana-vladimir.html", "sofa", "Владимир", "Химчистка диванов во Владимире", "Химчистка диванов во Владимире на дому — цены | HimchistkaDoma", "Химчистка диванов на дому во Владимире. Удаляем пятна и запахи. Выезд, оплата после результата. Тел.: +7 915 754-81-15."),
-    ("himchistka-divana-kovrov.html", "sofa", "Ковров", "Химчистка диванов в Коврове и Ковровском районе", "Химчистка диванов в Коврове и Ковровском районе | HimchistkaDoma", "Химчистка диванов в Коврове на дому. Выезд бесплатно. Удаляем пятна и запахи. Оплата после результата."),
-    ("himchistka-divana-dobrograd.html", "sofa", "Доброград", "Химчистка диванов в Доброграде и Ковровском районе", "Химчистка диванов в Доброграде и Ковровском районе | HimchistkaDoma", "Химчистка диванов в Доброграде на дому. Выезд из Коврова. Удаляем пятна и запахи. Оплата после результата."),
-    ("himchistka-matrasa-vladimir.html", "mattress", "Владимир", "Химчистка матрасов во Владимире", "Химчистка матрасов во Владимире на дому — цены | HimchistkaDoma", "Химчистка матрасов на дому во Владимире. Удаляем пятна, запахи и аллергены. Безопасно для детей."),
-    ("himchistka-matrasa-kovrov.html", "mattress", "Ковров", "Химчистка матрасов в Коврове и Ковровском районе", "Химчистка матрасов в Коврове и Ковровском районе | HimchistkaDoma", "Химчистка матрасов в Коврове на дому. Выезд бесплатно. От 1 500 ₽ за сторону."),
-    ("himchistka-matrasa-dobrograd.html", "mattress", "Доброград", "Химчистка матрасов в Доброграде", "Химчистка матрасов в Доброграде | HimchistkaDoma", "Химчистка матрасов в Доброграде на дому. Выезд из Коврова. Удаляем пятна и запахи."),
-    ("himchistka-kovrov-vladimir.html", "carpet", "Владимир", "Химчистка ковров во Владимире", "Химчистка ковров во Владимире на дому — цены | HimchistkaDoma", "Химчистка ковров на дому во Владимире без вывоза. От 350 ₽/м²."),
-    ("himchistka-kovrov-kovrov.html", "carpet", "Ковров", "Химчистка ковров в Коврове и Ковровском районе", "Химчистка ковров в Коврове и Ковровском районе | HimchistkaDoma", "Химчистка ковров в Коврове на дому без вывоза. Выезд бесплатно. От 350 ₽/м²."),
-    ("himchistka-kovrov-dobrograd.html", "carpet", "Доброград", "Химчистка ковров в Доброграде", "Химчистка ковров в Доброграде | HimchistkaDoma", "Химчистка ковров в Доброграде на дому без вывоза. Выезд из Коврова."),
-    ("himchistka-kresel-i-stulev-vladimir.html", "chair", "Владимир", "Химчистка кресел и стульев во Владимире", "Химчистка кресел и стульев во Владимире | HimchistkaDoma", "Химчистка кресел и стульев на дому и в офисе во Владимире. От 300 ₽."),
-    ("himchistka-kresel-i-stulev-kovrov.html", "chair", "Ковров", "Химчистка кресел и стульев в Коврове и Ковровском районе", "Химчистка кресел и стульев в Коврове | HimchistkaDoma", "Химчистка кресел и стульев в Коврове. Выезд бесплатно. От 300 ₽."),
-    ("himchistka-kresel-i-stulev-dobrograd.html", "chair", "Доброград", "Химчистка кресел и стульев в Доброграде", "Химчистка кресел и стульев в Доброграде | HimchistkaDoma", "Химчистка кресел и стульев в Доброграде на дому. Выезд из Коврова."),
+    ("himchistka-divana-vladimir.html", "sofa", "Владимир", "Химчистка диванов во Владимире", "Химчистка диванов во Владимире на дому — цены", "Химчистка диванов на дому во Владимире. Удаляем пятна и запахи. Выезд, оплата после результата. Тел.: +7 915 754-81-15."),
+    ("himchistka-divana-kovrov.html", "sofa", "Ковров", "Химчистка диванов в Коврове и Ковровском районе", "Химчистка диванов в Коврове — цены с выездом", "Химчистка диванов в Коврове на дому. Выезд бесплатно. Удаляем пятна и запахи. Оплата после результата. От 3 500 ₽."),
+    ("himchistka-divana-dobrograd.html", "sofa", "Доброград", "Химчистка диванов в Доброграде и Ковровском районе", "Химчистка диванов в Доброграде на дому", "Химчистка диванов в Доброграде на дому. Выезд из Коврова. Удаляем пятна и запахи. Оплата после результата."),
+    ("himchistka-matrasa-vladimir.html", "mattress", "Владимир", "Химчистка матрасов во Владимире", "Химчистка матрасов во Владимире на дому — цены", "Химчистка матрасов на дому во Владимире. Удаляем пятна, запахи и аллергены. Безопасно для детей. От 1 500 ₽."),
+    ("himchistka-matrasa-kovrov.html", "mattress", "Ковров", "Химчистка матрасов в Коврове и Ковровском районе", "Химчистка матрасов в Коврове — цены с выездом", "Химчистка матрасов в Коврове на дому. Выезд бесплатно. От 1 500 ₽ за сторону. Оплата после результата."),
+    ("himchistka-matrasa-dobrograd.html", "mattress", "Доброград", "Химчистка матрасов в Доброграде", "Химчистка матрасов в Доброграде на дому", "Химчистка матрасов в Доброграде на дому. Выезд из Коврова. Удаляем пятна и запахи. От 1 500 ₽."),
+    ("himchistka-kovrov-vladimir.html", "carpet", "Владимир", "Химчистка ковров во Владимире", "Химчистка ковров во Владимире на дому — цены", "Химчистка ковров на дому во Владимире без вывоза. От 350 ₽/м². Выезд, оплата после результата."),
+    ("himchistka-kovrov-kovrov.html", "carpet", "Ковров", "Химчистка ковров в Коврове и Ковровском районе", "Химчистка ковров в Коврове — цены за м²", "Химчистка ковров в Коврове на дому без вывоза. Выезд бесплатно. От 350 ₽/м². Оплата после результата."),
+    ("himchistka-kovrov-dobrograd.html", "carpet", "Доброград", "Химчистка ковров в Доброграде", "Химчистка ковров в Доброграде на дому", "Химчистка ковров в Доброграде на дому без вывоза. Выезд из Коврова. От 350 ₽/м²."),
+    ("himchistka-kresel-i-stulev-vladimir.html", "chair", "Владимир", "Химчистка кресел и стульев во Владимире", "Химчистка кресел и стульев во Владимире", "Химчистка кресел и стульев на дому и в офисе во Владимире. От 300 ₽. Выезд, оплата после результата."),
+    ("himchistka-kresel-i-stulev-kovrov.html", "chair", "Ковров", "Химчистка кресел и стульев в Коврове и Ковровском районе", "Химчистка кресел и стульев в Коврове — цены", "Химчистка кресел и стульев в Коврове. Выезд бесплатно. От 300 ₽. Оплата после результата."),
+    ("himchistka-kresel-i-stulev-dobrograd.html", "chair", "Доброград", "Химчистка кресел и стульев в Доброграде", "Химчистка кресел и стульев в Доброграде", "Химчистка кресел и стульев в Доброграде на дому. Выезд из Коврова. От 300 ₽."),
 ]
 
 SERVICE_META = {
@@ -604,11 +731,15 @@ def write_service_page(slug: str, data: dict) -> None:
     faq = render_faq(data["faq"])
     seo = "\n".join(f"<p>{esc(p)}</p>" for p in data["seo_paras"])
     form = FORM_SECTION.format(comment_placeholder=esc(data["comment"]))
+    breadcrumb_nav, breadcrumb_ld = render_breadcrumbs(
+        [("/", "Главная"), ("", data.get("service_type", data["h1"]))]
+    )
 
     body = f"""
 <main>
   <section class="page-hero">
     <div class="container">
+      {breadcrumb_nav}
       <span class="section-eyebrow">Услуга</span>
       <h1 class="section-title" style="margin-top:10px;">{esc(data["h1"])}</h1>
       <p class="section-sub" style="max-width:640px;">{esc(data["subtitle"])}</p>
@@ -677,12 +808,20 @@ def write_service_page(slug: str, data: dict) -> None:
             description=esc(data["description"]),
             slug=slug,
             og_title=esc(data["h1"]),
+            geo_place="Владимир, Ковров, Доброград",
         )
         + HEADER
         + body
-        + render_business_jsonld(data["service_name"])
+        + render_business_jsonld(
+            data["service_name"],
+            page_url=f"https://himchistkadoma.ru/{slug}",
+            service_type=data.get("service_type"),
+            price=data.get("offer_price"),
+        )
         + "\n"
         + render_faq_jsonld(data["faq"])
+        + "\n"
+        + breadcrumb_ld
         + "\n"
         + FOOTER
     )
@@ -722,15 +861,30 @@ def write_city_page(filename: str, key: str, city: str, h1: str, title: str, des
     seo = f"""
       <p>Профессиональная химчистка {esc(meta['noun'])} на дому в городе {esc(city)}. Приезжаем с оборудованием, подбираем химию под материал и степень загрязнения, выполняем глубокую очистку и экстракцию.</p>
       <p>Цена — {meta['price']}. Точную стоимость называем до начала работ по фото или на месте. Оплата только после результата.</p>
-      <p>Работаем ежедневно с 9:00 до 21:00. Безопасно для детей и животных.</p>
+      <p>Работаем ежедневно с 9:00 до 21:00. Безопасно для детей и животных. Зона обслуживания: {esc(city)} и ближайшие населённые пункты Владимирской области.</p>
     """
+    offer_map = {
+        "sofa": ("3500", "Химчистка диванов"),
+        "mattress": ("1500", "Химчистка матрасов"),
+        "carpet": ("350", "Химчистка ковров"),
+        "chair": ("300", "Химчистка кресел и стульев"),
+    }
+    offer_price, service_type = offer_map[key]
+    breadcrumb_nav, breadcrumb_ld = render_breadcrumbs(
+        [
+            ("/", "Главная"),
+            (meta["hub"], meta["hub_label"]),
+            ("", h1),
+        ]
+    )
     body = f"""
 <main>
   <section class="page-hero">
     <div class="container">
+      {breadcrumb_nav}
       <span class="section-eyebrow">{esc(city)}</span>
       <h1 class="section-title" style="margin-top:10px;">{esc(h1)}</h1>
-      <p class="section-sub" style="max-width:640px;">Выездная химчистка {esc(meta['noun'])} на дому. Удаляем пятна и запахи. Цена по фото — фиксированная.</p>
+      <p class="section-sub" style="max-width:640px;">Выездная химчистка {esc(meta['noun'])} на дому в {esc(city)}. Удаляем пятна и запахи. Цена по фото — фиксированная.</p>
       <div class="hero-cta" style="margin-top:20px;">
         <a class="btn btn-primary" href="#form-block">Заказать · {meta['price']}</a>
         <a class="btn btn-outline" href="tel:+79157548115">Позвонить</a>
@@ -779,12 +933,21 @@ def write_city_page(filename: str, key: str, city: str, h1: str, title: str, des
             description=esc(description),
             slug=filename,
             og_title=esc(h1),
+            geo_place=city,
         )
         + HEADER
         + body
-        + render_business_jsonld(f"Химчистка {meta['noun']} в {city} — HimchistkaDoma", city)
+        + render_business_jsonld(
+            f"Химчистка {meta['noun']} в {city} — HimchistkaDoma",
+            city,
+            page_url=f"https://himchistkadoma.ru/{filename}",
+            service_type=f"{service_type} в {city}",
+            price=offer_price,
+        )
         + "\n"
         + render_faq_jsonld(faq_raw)
+        + "\n"
+        + breadcrumb_ld
         + "\n"
         + FOOTER
     )
@@ -794,11 +957,12 @@ def write_city_page(filename: str, key: str, city: str, h1: str, title: str, des
 
 RENTALS = {
     "arenda-ekstraktora-dlya-mebeli-i-kovrov.html": {
-        "title": "Аренда экстрактора (моющего пылесоса) в Коврове — для мебели и ковров | HimchistkaDoma",
+        "title": "Аренда экстрактора в Коврове — моющий пылесос",
         "description": "Аренда экстрактора для химчистки мебели и ковров в Коврове. Насадки в комплекте, инструктаж при выдаче. Тел.: +7 915 754-81-15.",
         "h1": "Аренда экстрактора (моющего пылесоса) в Коврове",
-        "subtitle": "Подойдёт для диванов, кресел, ковров и ковролина. В комплекте — шланги и насадки, при выдаче проводим короткий инструктаж.",
-        "cards": [
+        "service_type": "Аренда экстрактора",
+        "offer_price": "1000",
+        "subtitle": "Подойдёт для диванов, кресел, ковров и ковролина. В комплекте — шланги и насадки, при выдаче проводим короткий инструктаж.",        "cards": [
             {"icon": "🔧", "tag": "Для чего", "title": "Диваны и кресла", "text": "Ткань и велюр. Базовый алгоритм чистки покажем при выдаче.", "price": "аренда", "unit": "от 1 дня"},
             {"icon": "🔧", "title": "Ковры и ковролин", "text": "Мощная экстракция грязи и раствора.", "price": "аренда", "unit": "от 1 дня"},
             {"icon": "🔧", "title": "Матрасы", "text": "Аккуратно, без переувлажнения. Подскажем режим.", "price": "аренда", "unit": "от 1 дня"},
@@ -819,9 +983,11 @@ RENTALS = {
         "comment": "Аренда экстрактора, даты",
     },
     "arenda-paroochistitelya.html": {
-        "title": "Аренда пароочистителя в Коврове — на сутки, для кухни и ванной | HimchistkaDoma",
+        "title": "Аренда пароочистителя в Коврове — на сутки",
         "description": "Аренда пароочистителя в Коврове для уборки дома: плитка, швы, сантехника, кухня. Насадки в комплекте, инструктаж. Тел.: +7 915 754-81-15.",
         "h1": "Аренда пароочистителя в Коврове",
+        "service_type": "Аренда пароочистителя",
+        "offer_price": "800",
         "subtitle": "Для сложных пятен, стыков и труднодоступных мест. Можно использовать вместе с экстрактором или отдельно.",
         "cards": [
             {"icon": "♨️", "tag": "Кухня", "title": "Плитка и фартук", "text": "Пар помогает убрать жир и налёт.", "price": "аренда", "unit": "от 1 дня"},
@@ -858,10 +1024,14 @@ def write_rental(slug: str, data: dict) -> None:
             ("/", "Химчистка под ключ", "Если нужен результат"),
         ]
     )
+    breadcrumb_nav, breadcrumb_ld = render_breadcrumbs(
+        [("/", "Главная"), ("", data["h1"])]
+    )
     body = f"""
 <main>
   <section class="page-hero">
     <div class="container">
+      {breadcrumb_nav}
       <span class="section-eyebrow">Аренда</span>
       <h1 class="section-title" style="margin-top:10px;">{esc(data["h1"])}</h1>
       <p class="section-sub" style="max-width:640px;">{esc(data["subtitle"])}</p>
@@ -900,12 +1070,21 @@ def write_rental(slug: str, data: dict) -> None:
             description=esc(data["description"]),
             slug=slug,
             og_title=esc(data["h1"]),
+            geo_place="Ковров",
         )
         + HEADER
         + body
-        + render_business_jsonld(data["h1"] + " — HimchistkaDoma", "Ковров")
+        + render_business_jsonld(
+            data["h1"] + " — HimchistkaDoma",
+            "Ковров",
+            page_url=f"https://himchistkadoma.ru/{slug}",
+            service_type=data.get("service_type", data["h1"]),
+            price=data.get("offer_price"),
+        )
         + "\n"
         + render_faq_jsonld(data["faq"])
+        + "\n"
+        + breadcrumb_ld
         + "\n"
         + FOOTER
     )
