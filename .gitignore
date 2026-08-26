@@ -8,3 +8,6 @@ __pycache__/
 *.pyc
 .env
 .env.*
+
+# Source before/after PNGs (site uses WebP)
+assets/img/works/new/*.png
