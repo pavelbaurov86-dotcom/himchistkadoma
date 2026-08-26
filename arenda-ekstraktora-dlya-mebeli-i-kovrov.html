@@ -1,737 +1,363 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Аренда экстрактора (моющего пылесоса) в Коврове — для мебели и ковров | HimchistkaDoma</title>
-<meta content="Аренда экстрактора (моющего пылесоса) в Коврове для химчистки мебели, диванов, ковров и ковролина. Насадки в комплекте, инструктаж при выдаче. Забрать/вернуть по договорённости. Тел.: +7 915 754-81-15." name="description"/>
-<link href="https://himchistkadoma.ru/arenda-ekstraktora-dlya-mebeli-i-kovrov.html" rel="canonical"/>
-<style>
-:root {
-  --bg-main:#000;
-  --bg-section:#050505;
-  --bg-card:#101010;
-  --accent:#f4c842;
-  --accent-soft:#ffe58a;
-  --text-main:#fff;
-  --text-muted:#b3b3b3;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg-main);
-  color:var(--text-main);
-  line-height:1.5;
-}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.container{width:100%;max-width:1180px;margin:0 auto;padding:0 16px}
-
-header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(0,0,0,.94);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(244,200,66,.2);
-}
-.header-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:8px 0}
-.logo{display:flex;align-items:center;gap:10px}
-.logo-icon{
-  width:42px;height:42px;border-radius:50%;
-  background:radial-gradient(circle at 30% 30%, var(--accent-soft), var(--accent));
-  display:flex;align-items:center;justify-content:center;
-  font-weight:700;color:#000;font-size:20px;
-}
-.logo-main{font-weight:700;font-size:14px;letter-spacing:.04em}
-.logo-sub{font-size:11px;color:var(--text-muted)}
-nav{display:flex;flex-wrap:wrap;gap:18px;font-size:13px}
-nav a{position:relative;padding-bottom:2px}
-nav a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--accent);transition:width .2s ease}
-nav a:hover::after{width:100%}
-.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:11px}
-.header-time{color:var(--accent-soft)}
-.header-phone{font-size:16px;font-weight:700;color:var(--accent-soft)}
-
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  border-radius:999px;border:none;
-  padding:11px 24px;font-size:14px;font-weight:600;
-  cursor:pointer;white-space:nowrap;
-  transition:transform .1s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
-}
-.btn-primary{
-  background:var(--accent);color:#000;
-  box-shadow:0 0 0 1px rgba(0,0,0,.9), 0 16px 30px rgba(0,0,0,.9);
-}
-.btn-primary:hover{transform:translateY(-1px);background:var(--accent-soft);box-shadow:0 20px 40px rgba(0,0,0,1)}
-.btn-outline{background:transparent;color:var(--accent-soft);border:1px solid rgba(244,200,66,.6)}
-.btn-outline:hover{background:rgba(244,200,66,.05)}
-
-section{padding:40px 0}
-.section-dark{background:var(--bg-section)}
-.section-title{text-transform:uppercase;font-size:22px;letter-spacing:.14em}
-.section-title span{color:var(--accent)}
-.section-sub{max-width:560px;font-size:13px;color:var(--text-muted);margin-top:10px}
-
-.hero{padding:34px 0 36px}
-.hero-inner{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:center}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:4px 10px;border-radius:999px;font-size:11px;
-  background:#101010;border:1px solid rgba(244,200,66,.4);
-  margin-bottom:16px;color:var(--accent-soft);
-}
-.hero-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.hero-title{
-  font-size:clamp(28px,4vw,38px);
-  text-transform:uppercase;font-weight:900;letter-spacing:.08em;line-height:1.2;
-}
-.hero-title span{display:block;color:var(--accent);font-size:1.05em}
-.hero-subtitle{margin-top:12px;font-size:16px;max-width:560px;color:var(--text-muted)}
-.hero-cta{margin-top:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.hero-note{font-size:12px;color:var(--text-muted)}
-.hero-note strong{color:var(--accent-soft)}
-
-.card{
-  background:var(--bg-card);
-  border-radius:20px;
-  padding:18px 16px;
-  border:1px solid rgba(244,200,66,.55);
-  box-shadow:0 0 18px rgba(244,200,66,.40), 0 16px 36px rgba(0,0,0,1);
-}
-.cards-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.card-title{font-size:16px;font-weight:700}
-.card-text{font-size:13px;color:var(--text-muted);margin-top:6px}
-
-.steps-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.step{
-  position:relative;
-  padding:16px 14px 14px;border-radius:18px;background:#050505;
-  border:1px dashed rgba(244,200,66,.45);
-}
-.step-num{position:absolute;top:10px;right:14px;font-size:11px;color:var(--text-muted)}
-.step-title{font-size:14px;color:var(--accent-soft);margin-bottom:6px}
-.step-text{font-size:12px;color:var(--text-muted)}
-
-.promo{
-  padding:16px 14px;border-radius:18px;background:#050505;
-  border:1px solid rgba(244,200,66,.25);
-}
-.promo-title{font-size:15px;font-weight:700;margin-bottom:4px;color:var(--accent-soft)}
-.promo-text{font-size:12px;color:var(--text-muted)}
-
-footer{
-  padding:18px 0 22px;border-top:1px solid rgba(244,200,66,.18);
-  font-size:11px;color:var(--text-muted);
-}
-.footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.footer-inner a{color:var(--accent-soft)}
-
-@media (max-width:1024px){
-  .hero-inner{grid-template-columns:minmax(0,1fr)}
-  .cards-grid{grid-template-columns:minmax(0,1fr)}
-  .steps-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:720px){
-  nav,.header-right{display:none}
-  section{padding:28px 0}
-  .steps-grid{grid-template-columns:minmax(0,1fr)}
-}
-
-/* BURGER */
-.burger{
-  display:none;
-  width:40px;height:40px;
-  border-radius:999px;
-  border:1px solid rgba(244,200,66,.6);
-  background:rgba(0,0,0,.85);
-  align-items:center;justify-content:center;
-  cursor:pointer;
-}
-.burger-lines{width:18px;height:14px;position:relative}
-.burger-lines span{
-  position:absolute;left:0;right:0;height:2px;
-  border-radius:999px;background:var(--accent-soft);
-  transition:.2s ease;
-}
-.burger-lines span:nth-child(1){top:0}
-.burger-lines span:nth-child(2){top:6px}
-.burger-lines span:nth-child(3){top:12px}
-.burger.active span:nth-child(1){top:6px;transform:rotate(45deg)}
-.burger.active span:nth-child(2){opacity:0}
-.burger.active span:nth-child(3){top:6px;transform:rotate(-45deg)}
-
-.mobile-menu{
-  display:none;
-  position:fixed;
-  inset:60px 12px auto 12px;
-  background:#050505;
-  border-radius:18px;
-  border:1px solid rgba(244,200,66,.4);
-  padding:16px;
-  z-index:1000;
-}
-.mobile-menu a{display:block;padding:10px 0;text-align:center;font-size:15px}
-
-@media (max-width:720px){
-  nav,.header-right{display:none}
-  .burger{display:flex}
-}
-
-
-/* MOBILE CALL BUTTON */
-.mobile-call{
-  display:none;
-  position:fixed;
-  left:12px;
-  right:12px;
-  bottom:12px;
-  z-index:1200;
-}
-.mobile-call a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:56px;
-  border-radius:999px;
-  background:var(--accent);
-  color:#000;
-  font-size:16px;
-  font-weight:800;
-  letter-spacing:.12em;
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.9),
-    0 0 0 1px rgba(0,0,0,.9);
-}
-
-@media (max-width:720px){
-  .mobile-call{display:block}
-  body{padding-bottom:84px}
-}
-
-/* --- form (как на главной) --- */
-.request-form{margin-top:18px;max-width:560px}
-.field{margin-top:14px}
-.field label{display:block;font-size:12px;letter-spacing:.02em;color:var(--text-muted);margin-bottom:8px}
-.field input,.field textarea{
-  width:100%;
-  border-radius:14px;
-  border:1px solid rgba(244,200,66,.35);
-  background:rgba(255,255,255,.04);
-  color:var(--text-main);
-  padding:14px 14px;
-  outline:none;
-}
-.field textarea{min-height:110px;resize:vertical}
-.phone-input-wrap{display:flex;align-items:center;gap:10px}
-.phone-prefix{
-  height:52px;min-width:54px;
-  display:flex;align-items:center;justify-content:center;
-  border-radius:14px;
-  border:1px solid rgba(244,200,66,.35);
-  background:rgba(255,255,255,.04);
-  color:var(--text-main);
-  font-weight:600;
-}
-.phone-input-wrap input{height:52px}
-.upload-area{
-  border:1px dashed rgba(244,200,66,.55);
-  background:rgba(255,255,255,.03);
-  border-radius:16px;
-  padding:16px;
-  cursor:pointer;
-  transition:transform .12s ease,border-color .12s ease,background .12s ease;
-}
-.upload-area.dragover{
-  border-color:rgba(244,200,66,.95);
-  background:rgba(244,200,66,.06);
-  transform:scale(1.01);
-}
-.upload-text{display:block;font-weight:700}
-.upload-subtext{display:block;margin-top:6px;color:var(--text-muted);font-size:12px}
-.upload-info{margin-top:8px;color:var(--text-muted);font-size:12px}
-.form-note{margin-top:10px;color:var(--text-muted);font-size:12px;line-height:1.35}
-.form-success,.form-error{
-  display:none;
-  margin-top:12px;
-  padding:12px 14px;
-  border-radius:14px;
-  font-size:13px;
-}
-.form-success{border:1px solid rgba(0,180,90,.5);background:rgba(0,180,90,.08)}
-.form-error{border:1px solid rgba(255,70,70,.55);background:rgba(255,70,70,.08)}
-</style>
-<meta content="website" property="og:type"/><meta content="https://himchistkadoma.ru/arenda-ekstraktora-dlya-mebeli-i-kovrov.html" property="og:url"/><meta content="Аренда экстрактора (моющего пылесоса) в Коврове — для мебели и ковров | HimchistkaDoma" property="og:title"/><meta content="Аренда экстрактора (моющего пылесоса) в Коврове для химчистки мебели, диванов, ковров и ковролина. Насадки в комплекте, инструктаж при выдаче. Забрать/вернуть по договорённости. Тел.: +7 915 754-81-15." property="og:description"/><meta content="ru_RU" property="og:locale"/><meta content="https://himchistkadoma.ru/og-image.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Аренда экстрактора (моющего пылесоса) в Коврове" name="twitter:title"/><meta content="Аренда экстрактора (моющего пылесоса) в Коврове для химчистки мебели, диванов, ковров и ковролина. Насадки в комплекте, инструктаж при выдаче. Забрать/вернуть по договорённости. Тел.: +7 915 754-81-15." name="twitter:description"/><meta content="https://himchistkadoma.ru/og-image.jpg" name="twitter:image"/><script type="application/ld+json">[
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "HimchistkaDoma",
-    "url": "https://himchistkadoma.ru/",
-    "telephone": "+7915754-81-15",
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Ковров"
-      }
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Ковров",
-      "addressCountry": "RU"
-    },
-    "openingHours": "Mo-Su 09:00-21:00"
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Аренда экстрактора (моющего пылесоса)",
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Ковров"
-      }
-    ],
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "HimchistkaDoma",
-      "telephone": "+7915754-81-15"
-    },
-    "url": "https://himchistkadoma.ru/arenda-ekstraktora-dlya-mebeli-i-kovrov.html"
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Сколько стоит аренда экстрактора в Коврове?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Стоимость зависит от срока аренды (на сутки/на выходные) и комплектации. Уточним цену по телефону и подтвердим наличие."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Что входит в комплект?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Экстрактор, шланги, насадки и базовые рекомендации по химии и режиму работы."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Можно ли почистить диван самостоятельно?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Да. Покажем базовый алгоритм: предварительная обработка, промывка и экстракция. Важно не заливать ткань водой."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Нужна ли химия?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Для лучшего результата обычно нужна подходящая химия для ткани/ворса. Подскажем, что выбрать под ваш тип загрязнений."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Нужен ли залог?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Условия аренды уточняйте при заявке — чаще всего достаточно паспорта и ответственности за сохранность оборудования."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Что делать, если не получается?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Подскажем по телефону/в мессенджере, как настроить подачу раствора и пройти проблемные зоны."
-        }
-      }
-    ]
-  }
-]</script></head>
+<meta name="description" content="Аренда экстрактора для химчистки мебели и ковров в Коврове. Насадки в комплекте, инструктаж при выдаче. Тел.: +7 915 754-81-15."/>
+<link rel="canonical" href="https://himchistkadoma.ru/arenda-ekstraktora-dlya-mebeli-i-kovrov.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="ru_RU"/>
+<meta property="og:url" content="https://himchistkadoma.ru/arenda-ekstraktora-dlya-mebeli-i-kovrov.html"/>
+<meta property="og:title" content="Аренда экстрактора (моющего пылесоса) в Коврове"/>
+<meta property="og:description" content="Аренда экстрактора для химчистки мебели и ковров в Коврове. Насадки в комплекте, инструктаж при выдаче. Тел.: +7 915 754-81-15."/>
+<meta property="og:image" content="https://himchistkadoma.ru/assets/img/og-image.jpg"/>
+<meta name="theme-color" content="#F0B429"/>
+<link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon"/>
+<link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="/assets/favicon/favicon_32x32.png" sizes="32x32" type="image/png"/>
+<link rel="apple-touch-icon" href="/assets/favicon/favicon_180x180.png" sizes="180x180"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<link rel="stylesheet" href="/assets/css/main.css"/>
+</head>
 <body>
-<header>
-<div class="container header-inner">
-<div class="logo">
-<div class="logo-icon">ХМ</div>
-<div>
-<div class="logo-main">ХИМЧИСТКА МЯГКОЙ МЕБЕЛИ</div>
-<div class="logo-sub">100% результат</div>
-</div>
-</div>
-<nav>
-<a href="#about">Что это</a>
-<a href="#included">Комплект</a>
-<a href="#how">Как арендовать</a>
-<a href="#rules">Важно</a>
-</nav>
-<button class="burger" onclick="toggleMenu()">
-<div class="burger-lines">
-<span></span><span></span><span></span>
-</div>
-</button>
-<div class="header-right">
-<div class="header-time">Пн–Вс 9:00–21:00</div>
-<a class="header-phone" href="tel:+79157548115">8 915 754-81-15</a>
-</div>
-</div>
-</header>
-<div class="mobile-menu" id="mobileMenu">
-<a href="#about" onclick="toggleMenu()">Что это</a>
-<a href="#included" onclick="toggleMenu()">Комплект</a>
-<a href="#how" onclick="toggleMenu()">Как арендовать</a>
-<a href="#rules" onclick="toggleMenu()">Важно</a>
-<a href="tel:+79157548115">Позвонить</a>
-</div>
-<main>
-<section class="hero" id="top">
-<div class="container hero-inner">
-<div>
-<div class="hero-badge"><span class="hero-dot"></span><span>Аренда оборудования</span></div>
-<h1 class="hero-title">Аренда экстрактора (моющего пылесоса) в Коврове</h1>
-<p class="hero-subtitle">Экстрактор для самостоятельной химчистки диванов, кресел, матрасов, ковров и ковролина. Выдаём с насадками и покажем, как пользоваться, чтобы получить хороший результат.</p>
-<div class="hero-cta">
-<a class="btn btn-primary" href="#form-block" onclick="scrollToId('form-block'); return false;">Оставить заявку</a>
-<a class="btn btn-outline" href="tel:+79157548115">Позвонить</a>
-<div class="hero-note">Быстро ответим и подскажем, <strong>какая химия и насадка</strong> лучше для вашей задачи.</div>
-</div>
-</div>
-<aside class="card">
-<div class="card-title">Коротко</div>
-<div class="card-text">
-          • Выдаём с насадками и шлангами<br/>
-          • При выдаче — короткий инструктаж<br/>
-          • Можно забрать/вернуть в удобное время (по договорённости)<br/>
-</div>
-<div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-<a class="btn btn-primary" href="#form-block" onclick="scrollToId('form-block'); return false;" style="padding:10px 16px;font-size:13px;">Оставить заявку</a>
-<a class="btn btn-outline" href="tel:+79157548115" style="padding:10px 16px;font-size:13px;">Звонок</a>
-</div>
-</aside>
-</div>
-</section>
-<section class="section-dark" id="about">
-<div class="container">
-<div class="section-title">Для чего <span>подходит</span></div>
-<div class="section-sub">Экстрактор вытягивает грязь и влагу из ткани и ворса, помогая освежить покрытие и удалить большинство бытовых загрязнений.</div>
-<div class="cards-grid" style="margin-top:18px">
-<div class="card">
-<div class="card-title">Мягкая мебель</div>
-<div class="card-text">Диваны, кресла, стулья, пуфы. Удобно для локальных пятен и общей чистки.</div>
-</div>
-<div class="card">
-<div class="card-title">Ковры и ковролин</div>
-<div class="card-text">Подходит для ковровых покрытий и ковролина — освежить, убрать следы и запахи.</div>
-</div>
-<div class="card">
-<div class="card-title">Матрасы</div>
-<div class="card-text">Помогает удалить поверхностные загрязнения. Важно не переувлажнять — покажем как.</div>
-</div>
-</div>
-</div>
-</section>
-<section id="included">
-<div class="container">
-<div class="section-title">Что <span>в комплекте</span></div>
-<div class="section-sub">Вы получаете всё необходимое, чтобы начать чистку сразу.</div>
-<div class="cards-grid" style="margin-top:18px">
-<div class="card">
-<div class="card-title">Шланги и соединения</div>
-<div class="card-text">Для подачи раствора и сбора воды — проверяем при выдаче.</div>
-</div>
-<div class="card">
-<div class="card-title">Насадки</div>
-<div class="card-text">Для мебели и текстиля. Подскажем, какую насадку лучше использовать под вашу ткань.</div>
-</div>
-<div class="card">
-<div class="card-title">Инструктаж</div>
-<div class="card-text">Коротко покажем: как заливать, распылять, проходить и что делать, чтобы не было разводов.</div>
-</div>
-</div>
-<div class="promo" style="margin-top:18px">
-<div class="promo-title">Актуальные условия</div>
-<div class="promo-text">
-          Мы не берём залог за оборудование. Клиент отвечает за сохранность техники на время аренды.
-          <br/><br/>
-<a class="btn btn-primary" href="#form-block" onclick="scrollToId('form-block'); return false;" style="padding:10px 16px;font-size:13px;">Оставить заявку</a>
-</div>
-</div>
-</div>
-</section>
-<section class="section-dark" id="how">
-<div class="container">
-<div class="section-title">Как <span>арендовать</span></div>
-<div class="section-sub">Ничего сложного — обычно всё занимает 5–10 минут.</div>
-<div class="steps-grid" style="margin-top:18px">
-<div class="step">
-<div class="step-num">01</div>
-<div class="step-title">Свяжитесь</div>
-<div class="step-text">Позвоните или оставьте заявку </div>
-</div>
-<div class="step">
-<div class="step-num">02</div>
-<div class="step-title">Согласуем время</div>
-<div class="step-text">Договоримся о выдаче и возврате (ориентируемся по вашему графику).</div>
-</div>
-<div class="step">
-<div class="step-num">03</div>
-<div class="step-title">Получите комплект</div>
-<div class="step-text">Проверим работу, покажем базовые приёмы и нюансы по ткани/ворсу.</div>
-</div>
-<div class="step">
-<div class="step-num">04</div>
-<div class="step-title">Чистка дома</div>
-<div class="step-text">Чистите у себя дома. Если возникнут вопросы — подскажем по телефону.</div>
-</div>
-</div>
-</div>
-</section>
-<section id="rules">
-<div class="container">
-<div class="section-title">Важно <span>знать</span></div>
-<div class="section-sub">Чтобы результат был лучше и без неприятных сюрпризов.</div>
-<div class="cards-grid" style="margin-top:18px">
-<div class="card">
-<div class="card-title">Не переувлажняйте</div>
-<div class="card-text">Проходите равномерно и делайте дополнительные «сухие» проходы на сбор.</div>
-</div>
-<div class="card">
-<div class="card-title">Тест на незаметном месте</div>
-<div class="card-text">Если ткань деликатная/яркая — сначала протестируйте на небольшом участке.</div>
-</div>
-<div class="card">
-<div class="card-title">Проветривание</div>
-<div class="card-text">После чистки обеспечьте вентиляцию, чтобы ускорить сушку и убрать запахи.</div>
-</div>
-</div>
-<div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
-<a class="btn btn-primary" href="#form-block" onclick="scrollToId('form-block'); return false;">Оставить заявку</a>
-<a class="btn btn-outline" href="tel:+79157548115">Задать вопрос</a>
-</div>
-</div>
-</section>
-<section class="section-dark" id="form-block">
-<div class="container">
-<div class="section-title">Онлайн-<span>заявка</span></div>
-<div class="section-sub">
-      Заполните поля ниже — перезвоним в течение 15–30 минут в рабочее время.
+
+<header class="site-header">
+  <div class="header-shell">
+    <div class="header-inner">
+      <a class="logo" href="/">
+        <div class="logo-icon">ХМ</div>
+        <div>
+          <div class="logo-main">HimchistkaDoma</div>
+          <div class="logo-sub">Владимир · Ковров · Доброград</div>
+        </div>
+      </a>
+      <nav class="nav-desktop" aria-label="Основное меню">
+        <a href="/himchistka-divanov.html">Диваны</a>
+        <a href="/himchistka-matrasov.html">Матрасы</a>
+        <a href="/himchistka-kovrov.html">Ковры</a>
+        <a href="/himchistka-kresel-i-stulev.html">Кресла</a>
+        <a href="/#price">Цены</a>
+      </nav>
+      <div class="header-right">
+        <div class="header-time">Пн–Вс 9:00–21:00</div>
+        <a class="header-phone" href="tel:+79157548115">8&nbsp;915&nbsp;754-81-15</a>
+        <a class="btn btn-primary btn-small header-cta" href="#form-block">Заявка</a>
+      </div>
+      <button aria-label="Открыть меню" aria-expanded="false" class="burger" id="burger" type="button">
+        <div class="burger-lines"><span></span><span></span><span></span></div>
+      </button>
     </div>
-<form class="request-form" enctype="multipart/form-data" id="request-form" onsubmit="return handleSubmit(event)">
-<div class="field">
-<label for="name">Имя</label>
-<input id="name" name="name" placeholder="Как к вам обращаться?" type="text"/>
-</div>
-<div class="field">
-<label for="phone">Телефон / мессенджер</label>
-<div class="phone-input-wrap">
-<span class="phone-prefix">+7</span>
-<input id="phone" name="phone" placeholder="___ ___-__-__" type="tel"/>
-</div>
-</div>
-<div class="field">
-<label for="comment">Комментарий</label>
-<textarea id="comment" name="comment" placeholder="Например: нужна аренда экстрактора на 1 день, Ковров, ул. ..."></textarea>
-</div>
-<div class="field">
-<label style="display:none !important;"></label>
-<div class="upload-area" id="upload-area">
-<span class="upload-text">Перетащите или загрузите фото</span>
-<span class="upload-subtext">Можно прикрепить несколько файлов</span>
-</div>
-<input accept="image/*" id="photos" multiple="" name="photos" style="display:none;" type="file"/>
-<div class="upload-info" id="upload-info">Файлы не выбраны</div>
-</div>
-<button class="btn btn-primary" type="submit">Отправить заявку</button>
-<div class="form-note">
-        Нажимая кнопку, вы соглашаетесь с обработкой персональных данных. Контакты не передаём третьим лицам.
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-nav">
+      <a href="/">Главная</a>
+      <a href="/himchistka-divanov.html">Химчистка диванов</a>
+      <a href="/himchistka-matrasov.html">Химчистка матрасов</a>
+      <a href="/himchistka-kovrov.html">Химчистка ковров</a>
+      <a href="/himchistka-kresel-i-stulev.html">Кресла и стулья</a>
+      <a href="/#price">Цены</a>
+      <a href="#form-block">Заявка</a>
+      <a href="#contacts">Контакты</a>
+    </div>
+    <div class="mobile-menu-footer">
+      <a class="mobile-menu-phone" href="tel:+79157548115">8&nbsp;915&nbsp;754-81-15</a>
+      <div class="mobile-menu-time">Пн–Вс 9:00–21:00</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-eyebrow">Аренда</span>
+      <h1 class="section-title" style="margin-top:10px;">Аренда экстрактора (моющего пылесоса) в Коврове</h1>
+      <p class="section-sub" style="max-width:640px;">Подойдёт для диванов, кресел, ковров и ковролина. В комплекте — шланги и насадки, при выдаче проводим короткий инструктаж.</p>
+      <div class="hero-cta" style="margin-top:20px;">
+        <a class="btn btn-primary" href="#form-block">Оставить заявку</a>
+        <a class="btn btn-outline" href="tel:+79157548115">Позвонить</a>
       </div>
-<div class="form-success" id="form-success">
-        Заявка отправлена. Мы свяжемся с вами в ближайшее время.
-      </div>
-<div class="form-error" id="form-error">
-        Пожалуйста, укажите имя и номер телефона.
-      </div>
-</form>
+    </div>
+  </section>
+  <section class="section-alt" id="price">
+    <div class="container">
+      <div class="section-header"><span class="section-eyebrow">Возможности</span><h2 class="section-title">Для каких задач</h2></div>
+      <div class="cards-grid">
+<article class="card">
+          <div class="card-link">
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">🔧</div>
+              <div class="card-tag">Для чего</div>
+            </div>
+            <h3 class="card-title">Диваны и кресла</h3>
+            <p class="card-text">Ткань и велюр. Базовый алгоритм чистки покажем при выдаче.</p>
+            <div class="card-price">аренда <small>от 1 дня</small></div>
+          </div>
+        </article>
+<article class="card">
+          <div class="card-link">
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">🔧</div>
+              
+            </div>
+            <h3 class="card-title">Ковры и ковролин</h3>
+            <p class="card-text">Мощная экстракция грязи и раствора.</p>
+            <div class="card-price">аренда <small>от 1 дня</small></div>
+          </div>
+        </article>
+<article class="card">
+          <div class="card-link">
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">🔧</div>
+              
+            </div>
+            <h3 class="card-title">Матрасы</h3>
+            <p class="card-text">Аккуратно, без переувлажнения. Подскажем режим.</p>
+            <div class="card-price">аренда <small>от 1 дня</small></div>
+          </div>
+        </article>
+<article class="card">
+          <div class="card-link">
+            <div class="card-top">
+              <div class="card-icon" aria-hidden="true">📦</div>
+              
+            </div>
+            <h3 class="card-title">Комплект</h3>
+            <p class="card-text">Экстрактор, шланги, насадки и рекомендации по химии.</p>
+            <div class="card-price">входит <small>в аренду</small></div>
+          </div>
+        </article>
 </div>
+    </div>
+  </section>
+  
+<section class="section-alt" id="form-block">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Заявка</span>
+      <h2 class="section-title">Оставить заявку</h2>
+      <p class="section-sub">Пришлите фото — назовём точную цену до выезда. Перезвоним за 15–30 минут.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-block">
+        <div class="contact-row">
+          <span class="contact-label">Телефон</span>
+          <span class="contact-value"><a href="tel:+79157548115">8&nbsp;915&nbsp;754-81-15</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Мессенджеры</span>
+          <span class="contact-value">
+            <a href="https://wa.me/79157548115" target="_blank" rel="noopener">WhatsApp</a> ·
+            <a href="https://t.me/himchistka_33" target="_blank" rel="noopener">Telegram</a> ·
+            <a href="https://vk.com/kovrov_himchistka33" target="_blank" rel="noopener">VK</a>
+          </span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">График</span>
+          <span class="contact-value">Ежедневно 9:00–21:00</span>
+        </div>
+      </div>
+      <div class="contact-block">
+        <form enctype="multipart/form-data" id="request-form" onsubmit="return handleSubmit(event)">
+          <div class="field">
+            <label for="name">Имя</label>
+            <input id="name" name="name" placeholder="Как к вам обращаться?" required type="text" autocomplete="name"/>
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <div class="phone-input-wrap">
+              <span class="phone-prefix">+7</span>
+              <input id="phone" name="phone" placeholder="915 754-81-15" required type="tel" autocomplete="tel" inputmode="tel"/>
+            </div>
+          </div>
+          <div class="field">
+            <label for="comment">Что нужно почистить?</label>
+            <textarea id="comment" name="comment" placeholder="Аренда экстрактора, даты"></textarea>
+          </div>
+          <div class="field">
+            <label class="visually-hidden" for="photos">Фото</label>
+            <div class="upload-area" id="upload-area">
+              <span class="upload-text">Перетащите или загрузите фото</span>
+              <span class="upload-subtext">Можно несколько файлов</span>
+            </div>
+            <input accept="image/*" id="photos" multiple name="photos" style="display:none;" type="file"/>
+            <div class="upload-info" id="upload-info">Файлы не выбраны</div>
+          </div>
+          <button class="btn btn-accent btn-block" type="submit">Отправить заявку</button>
+          <div class="form-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy.html">обработкой персональных данных</a>.</div>
+          <div class="form-success" id="form-success">Заявка отправлена. Мы свяжемся с вами в ближайшее время.</div>
+          <div class="form-error" id="form-error">Пожалуйста, укажите имя и корректный номер телефона.</div>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section-dark" id="seo-text">
+  <section id="seo-text">
+    <div class="container">
+      <div class="section-header"><h2 class="section-title">Подробнее</h2></div>
+      <div class="seo-text" style="max-width:820px;"><p>Аренда моющего пылесоса (экстрактора) в Коврове помогает сделать уборку самостоятельно, без ожидания мастера. Выдаём оборудование, проводим короткий инструктаж и подсказываем, как получить хороший результат.</p>
+<p>Если нужен гарантированный результат — закажите профессиональную химчистку мебели и ковров под ключ.</p></div>
+    </div>
+  </section>
+  <section class="section-alt" id="faq">
+    <div class="container">
+      <div class="section-header"><span class="section-eyebrow">FAQ</span><h2 class="section-title">Частые вопросы</h2></div>
+      <div class="faq-list">
+<details><summary>Сколько стоит аренда экстрактора в Коврове?</summary><p>Стоимость зависит от срока аренды и комплектации. Уточним цену по телефону и подтвердим наличие.</p></details>
+<details><summary>Что входит в комплект?</summary><p>Экстрактор, шланги, насадки и базовые рекомендации по химии и режиму работы.</p></details>
+<details><summary>Можно ли почистить диван самостоятельно?</summary><p>Да. Покажем базовый алгоритм: предварительная обработка, промывка и экстракция. Важно не заливать ткань водой.</p></details>
+<details><summary>Нужна ли химия?</summary><p>Для лучшего результата обычно нужна подходящая химия. Подскажем, что выбрать.</p></details>
+<details><summary>Нужен ли залог?</summary><p>Залог не берём. Клиент отвечает за сохранность техники.</p></details>
+<details><summary>Что делать, если не получается?</summary><p>Подскажем по телефону или в мессенджере.</p></details>
+</div>
+    </div>
+  </section>
+  <section class="section-alt" id="related">
 <div class="container">
-<div class="section-title">Аренда экстрактора <span>в Коврове</span></div>
-<div class="section-sub"></div>
-<h2 style="margin-top:16px">Аренда моющего пылесоса (экстрактора) в Коврове</h2>
-<p style="margin-top:10px; color: var(--text-muted); font-size:13px">
-      Если нужно быстро освежить мебель, ковры или навести порядок в квартире — аренда техники помогает сделать уборку самостоятельно,
-      без ожидания мастера. Мы выдаём оборудование в Коврове, проводим короткий инструктаж и подсказываем, как получить хороший результат.
-    </p>
-<h3 style="margin-top:14px">Для чего подходит</h3>
-<ul style="margin-top:10px; color: var(--text-muted); font-size:13px; line-height:1.6">
-<li>• Диваны и кресла (ткань/велюр)</li><li>• Стулья и офисные кресла</li><li>• Матрасы (без переувлажнения)</li><li>• Ковры и ковролин</li>
-</ul>
-<h3 style="margin-top:14px">Как получить максимум результата</h3>
-<p style="margin-top:10px; color: var(--text-muted); font-size:13px">
-      Мы подскажем, какие насадки использовать и как пройти сложные участки. Если сомневаетесь — лучше сделать тест на небольшом участке,
-      чтобы убедиться, что поверхность реагирует нормально.
-    </p>
-<div class="promo" style="margin-top:18px">
-<div class="promo-title">Нужна услуга «под ключ»?</div>
-<div class="promo-text">Если важен гарантированный результат — закажите профессиональную химчистку мебели и ковров с выездом мастера.</div>
-<div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
-<a class="btn btn-outline" href="/">Химчистка мебели (главная)</a>
-<a class="btn btn-outline" href="/divan.html">Химчистка диванов</a>
-</div>
-</div>
-</div>
+<div class="section-header"><span class="section-eyebrow">Ещё услуги</span><h2 class="section-title">Смотрите также</h2></div>
+<div class="related-grid">
+<a class="related-link" href="/arenda-ekstraktora-dlya-mebeli-i-kovrov.html">Аренда экстрактора<span>Мебель и ковры</span></a>
+<a class="related-link" href="/arenda-paroochistitelya.html">Аренда пароочистителя<span>Кухня и ванная</span></a>
+<a class="related-link" href="/">Химчистка под ключ<span>Если нужен результат</span></a>
+</div></div></section>
+  
+<section id="contacts">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Связь</span>
+      <h2 class="section-title">Контакты</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-block">
+        <div class="contact-row">
+          <span class="contact-label">Телефон</span>
+          <span class="contact-value"><a href="tel:+79157548115">8&nbsp;915&nbsp;754-81-15</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Зона работы</span>
+          <span class="contact-value">Владимир, Ковров, Доброград и радиус 100&nbsp;км от Коврова.</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">График</span>
+          <span class="contact-value">Ежедневно с 9:00 до 21:00</span>
+        </div>
+      </div>
+      <div class="contact-block">
+        <p style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">Присылайте фото — подскажем, что реально удалить, и озвучим честную цену.</p>
+        <a class="btn btn-primary" href="#form-block">Оставить заявку</a>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="section-dark" id="faq">
-<div class="container">
-<div class="section-title">Вопросы <span>и ответы</span></div>
-<div class="section-sub">Коротко отвечаем на частые вопросы про аренду.</div>
-<div class="faq-list" style="margin-top:16px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px">
-<details>
-<summary>Сколько стоит аренда экстрактора в Коврове?</summary>
-<p>Стоимость зависит от срока аренды (на сутки/на выходные) и комплектации. Уточним цену по телефону и подтвердим наличие.</p>
-</details>
-<details>
-<summary>Что входит в комплект?</summary>
-<p>Экстрактор, шланги, насадки и базовые рекомендации по химии и режиму работы.</p>
-</details>
-<details>
-<summary>Можно ли почистить диван самостоятельно?</summary>
-<p>Да. Покажем базовый алгоритм: предварительная обработка, промывка и экстракция. Важно не заливать ткань водой.</p>
-</details>
-<details>
-<summary>Нужна ли химия?</summary>
-<p>Для лучшего результата обычно нужна подходящая химия для ткани/ворса. Подскажем, что выбрать под ваш тип загрязнений.</p>
-</details>
-<details>
-<summary>Нужен ли залог?</summary>
-<p>Условия аренды уточняйте при заявке — чаще всего достаточно паспорта и ответственности за сохранность оборудования.</p>
-</details>
-<details>
-<summary>Что делать, если не получается?</summary>
-<p>Подскажем по телефону/в мессенджере, как настроить подачу раствора и пройти проблемные зоны.</p>
-</details>
-</div>
-</div>
-</section>
+
 </main>
-<footer>
-<div class="container footer-inner">
-<div>© HimchistkaDoma • Ковров</div>
-<div>
-      Телефон: <a href="tel:+79157548115">8 915 754-81-15</a> •
-      <a href="index.html">На главную</a>
-</div>
-</div>
-</footer>
-<script>
-function toggleMenu(){
-  const menu=document.getElementById('mobileMenu');
-  const burger=document.querySelector('.burger');
-  menu.style.display = menu.style.display==='block' ? 'none' : 'block';
-  burger.classList.toggle('active');
-}
-
-function closeMobileMenu(){
-  const menu=document.getElementById('mobileMenu');
-  const burger=document.querySelector('.burger');
-  if(!menu) return;
-  menu.style.display='none';
-  if(burger) burger.classList.remove('active');
-}
-
-function scrollToId(id){
-  const el=document.getElementById(id);
-  if(!el) return;
-  closeMobileMenu();
-  el.scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybXYyLaTEnCSd8pVNKS9bG_FxcVu9e2MNln4-XEUbPO3M2wMyo0pdeXGWQfV8cnxg4tg/exec";
-
-function handleSubmit(event){
-  event.preventDefault();
-
-  const form = document.getElementById('request-form');
-  const name = (document.getElementById('name')?.value || '').trim();
-  const phoneInput = (document.getElementById('phone')?.value || '').trim();
-  const success = document.getElementById('form-success');
-  const error = document.getElementById('form-error');
-
-  const digits = phoneInput.replace(/\D/g,'');
-  if(!name || digits.length < 5){
-    if(success) success.style.display='none';
-    if(error) error.style.display='block';
-    return false;
-  }
-
-  if(success) success.style.display='none';
-  if(error) error.style.display='none';
-
-  const formData = new FormData(form);
-  formData.set('phone', '+7 ' + phoneInput);
-
-  fetch(SCRIPT_URL, { method:'POST', body: formData })
-    .then(res => { if(!res.ok) throw new Error('Network response was not ok'); return res.text(); })
-    .then(() => {
-      if(success) success.style.display='block';
-      form.reset();
-      const uploadInfo = document.getElementById('upload-info');
-      if(uploadInfo) uploadInfo.textContent='Файлы не выбраны';
-      alert('Ваша заявка отправлена!');
-    })
-    .catch(err => {
-      console.error(err);
-      if(success) success.style.display='none';
-      if(error) error.style.display='block';
-    });
-
-  return false;
-}
-
-document.addEventListener('DOMContentLoaded', function(){
-  const uploadArea = document.getElementById('upload-area');
-  const photosInput = document.getElementById('photos');
-  const uploadInfo = document.getElementById('upload-info');
-  if(!uploadArea || !photosInput) return;
-
-  function updateUploadInfo(){
-    const count = photosInput.files ? photosInput.files.length : 0;
-    if(!uploadInfo) return;
-    if(count===0) uploadInfo.textContent='Файлы не выбраны';
-    else if(count===1) uploadInfo.textContent='Прикреплено 1 фото';
-    else uploadInfo.textContent='Прикреплено ' + count + ' фото';
-  }
-
-  uploadArea.addEventListener('click', () => photosInput.click());
-  photosInput.addEventListener('change', updateUploadInfo);
-
-  uploadArea.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadArea.classList.add('dragover');
-  });
-  uploadArea.addEventListener('dragleave', (e) => {
-    e.preventDefault();
-    uploadArea.classList.remove('dragover');
-  });
-  uploadArea.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadArea.classList.remove('dragover');
-    if(e.dataTransfer && e.dataTransfer.files){
-      photosInput.files = e.dataTransfer.files;
-      updateUploadInfo();
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Аренда экстрактора (моющего пылесоса) в Коврове — HimchistkaDoma",
+  "url": "https://himchistkadoma.ru/",
+  "telephone": "+7-915-754-81-15",
+  "image": "https://himchistkadoma.ru/assets/img/og-image.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ковров",
+    "addressRegion": "Владимирская область",
+    "addressCountry": "RU"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Ковров"
+    },
+    {
+      "@type": "City",
+      "name": "Владимир"
+    },
+    {
+      "@type": "City",
+      "name": "Доброград"
     }
-  });
-});
+  ],
+  "openingHours": "Mo-Su 09:00-21:00",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "201",
+    "bestRating": "5"
+  }
+}
 </script>
-<div class="mobile-call">
-<a href="tel:+79157548115">ПОЗВОНИТЬ</a>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Сколько стоит аренда экстрактора в Коврове?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стоимость зависит от срока аренды и комплектации. Уточним цену по телефону и подтвердим наличие."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что входит в комплект?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Экстрактор, шланги, насадки и базовые рекомендации по химии и режиму работы."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно ли почистить диван самостоятельно?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Покажем базовый алгоритм: предварительная обработка, промывка и экстракция. Важно не заливать ткань водой."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Нужна ли химия?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Для лучшего результата обычно нужна подходящая химия. Подскажем, что выбрать."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Нужен ли залог?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Залог не берём. Клиент отвечает за сохранность техники."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что делать, если не получается?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Подскажем по телефону или в мессенджере."
+      }
+    }
+  ]
+}
+</script>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© <span id="year"></span> HimchistkaDoma — химчистка мягкой мебели и ковров.</div>
+    <div class="footer-links">
+      <a href="/privacy.html">Политика конфиденциальности</a>
+      <a href="tel:+79157548115">8&nbsp;915&nbsp;754-81-15</a>
+    </div>
+  </div>
+</footer>
+<div class="mobile-call-bar">
+  <a class="mobile-call-btn" href="tel:+79157548115">Позвонить</a>
 </div>
+<script src="/assets/js/main.js" defer></script>
 </body>
 </html>
