@@ -101,19 +101,22 @@ body.calc-app {
 }
 .ca-chips {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 8px;
   margin-bottom: 18px;
 }
 .ca-chip {
   min-height: 44px;
-  padding: 8px 10px;
+  width: 100%;
+  padding: 8px 14px;
   border-radius: 14px;
   border: 1.5px solid #e8b01e;
   background: #fff;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
+  white-space: nowrap;
+  text-align: left;
 }
 .ca-chip.is-on {
   background: #e8b01e;
@@ -309,4 +312,16 @@ body.calc-app {
 @media (min-width: 980px) {
   #calc-app { max-width: 720px; margin: 0 auto; }
   .ca-bar { max-width: 720px; left: 50%; right: auto; transform: translateX(-50%); width: 100%; }
+}
+
+.ca-form .form-success {
+  margin: 0 16px 12px;
+}
+.ca-form .form-error,
+.calc-app .form-error {
+  display: none;
+  margin-top: 8px;
+}
+#calc-app > .form-success {
+  margin: 12px 16px 0;
 }

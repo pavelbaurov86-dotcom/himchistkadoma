@@ -233,7 +233,7 @@
               '">' +
               tp.label +
               " · " +
-              tp.price.toLocaleString("ru-RU") +
+              money(tp.price).replace("\u00a0₽", "") +
               "</button>"
             );
           })
@@ -327,16 +327,16 @@
     try { sessionStorage.setItem("him-calc-draft", draft); } catch (e) {}
     return (
       renderHeader("Заявка", "cart") +
+      '<div class="form-success" id="form-success">Заявка ушла, перезвоним</div>' +
       '<form class="ca-form" id="request-form" enctype="multipart/form-data" onsubmit="return handleSubmit(event)">' +
       '<div class="field"><label for="name">Имя</label>' +
       '<input id="name" name="name" required autocomplete="name" placeholder="Как к вам обращаться?"/></div>' +
       '<div class="field"><label for="phone">Телефон</label>' +
       '<div class="phone-input-wrap"><span class="phone-prefix">+7</span>' +
-      '<input id="phone" name="phone" required type="tel" autocomplete="tel" inputmode="tel" placeholder="915 754-81-15"/></div></div>' +
+      '<input id="phone" name="phone" required type="tel" autocomplete="tel" inputmode="tel" placeholder="915 754-81-15"/></div>' +
+      '<div class="form-error" id="form-error">Укажите корректный номер телефона.</div></div>' +
       '<div class="field"><label for="comment">Что нужно почистить?</label>' +
       '<textarea id="comment" name="comment" rows="5">' + escapeHtml(draft) + '</textarea></div>' +
-      '<div class="form-success" id="form-success">Заявка отправлена. Мы свяжемся с вами в ближайшее время.</div>' +
-      '<div class="form-error" id="form-error">Пожалуйста, укажите имя и корректный номер телефона.</div>' +
       '<button class="ca-add" type="submit">Отправить заявку</button>' +
       "</form>"
     );
