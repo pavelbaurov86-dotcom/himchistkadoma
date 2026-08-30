@@ -2230,3 +2230,25 @@ html.js .reveal.is-visible {
   line-height: 1;
 }
 .avito-widget p { color: var(--muted); font-size: 14px; }
+
+.online-status--dot,
+.header-inner > .online-status {
+  width: 22px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  padding: 0 !important;
+  margin-left: auto;
+  overflow: hidden;
+  background: transparent !important;
+  border: 0 !important;
+}
+.online-status--dot .online-copy,
+.header-inner > .online-status .online-copy {
+  display: none !important;
+}
+.mobile-call-bar { display: none !important; }
+body { padding-bottom: 0; }
+@media (max-width: 979px) {
+  body.has-calc { padding-bottom: 128px; }
+}

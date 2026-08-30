@@ -635,33 +635,42 @@
     root.setAttribute("aria-label", text);
   }
 
-  function onlineMarkup() {
+  function onlineMarkup(mode) {
     var wrap = document.createElement("div");
-    wrap.className = "online-status";
+    wrap.className = mode === "dot" ? "online-status online-status--dot" : "online-status";
     wrap.setAttribute("data-online-status", "");
     wrap.innerHTML =
       '<span class="online-dot" aria-hidden="true"></span>' +
-      '<span class="online-copy"><span class="online-label" data-online-label>Онлайн · пишите · звоните</span>' +
-      '<span class="online-actions">' +
-      '<a href="https://wa.me/79157548115" target="_blank" rel="noopener">WhatsApp</a>' +
-      '<a href="tel:+79157548115">звонить</a></span></span>';
+      (mode === "dot"
+        ? ""
+        : '<span class="online-copy"><span class="online-label" data-online-label>Онлайн · пишите · звоните</span>' +
+          '<span class="online-actions">' +
+          '<a href="https://wa.me/79157548115" target="_blank" rel="noopener">WhatsApp</a>' +
+          '<a href="tel:+79157548115">звонить</a></span></span>');
     return wrap;
   }
 
   function ensureOnlineNodes() {
     var inner = document.querySelector(".header-inner");
-    if (inner && !inner.querySelector(":scope > [data-online-status]")) {
-      var burger = inner.querySelector(".burger");
-      inner.insertBefore(onlineMarkup(), burger || null);
+    if (inner) {
+      var existing = inner.querySelector(":scope > [data-online-status]");
+      if (existing) {
+        existing.classList.add("online-status--dot");
+        var copy = existing.querySelector(".online-copy");
+        if (copy) copy.remove();
+      } else {
+        var burger = inner.querySelector(".burger");
+        inner.insertBefore(onlineMarkup("dot"), burger || null);
+      }
     }
     var right = document.querySelector(".header-right");
     if (right && !right.querySelector("[data-online-status]")) {
       var phone = right.querySelector(".header-phone");
-      right.insertBefore(onlineMarkup(), phone || right.firstChild);
+      right.insertBefore(onlineMarkup("full"), phone || right.firstChild);
     }
     var foot = document.querySelector(".mobile-menu-footer");
     if (foot && !foot.querySelector("[data-online-status]")) {
-      foot.insertBefore(onlineMarkup(), foot.firstChild);
+      foot.insertBefore(onlineMarkup("full"), foot.firstChild);
     }
   }
 
