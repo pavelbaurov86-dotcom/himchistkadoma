@@ -604,6 +604,77 @@
     });
   }
 
+
+  /* Online 09:00–21:00 Europe/Moscow */
+  function moscowHour() {
+    var parts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Moscow",
+      hour: "numeric",
+      hour12: false,
+    }).formatToParts(new Date());
+    var hour = 0;
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i].type === "hour") hour = Number(parts[i].value);
+    }
+    if (hour === 24) hour = 0;
+    return hour;
+  }
+
+  function isWorkingNow() {
+    var h = moscowHour();
+    return h >= 9 && h < 21;
+  }
+
+  function applyOnlineState(root, online) {
+    if (!root) return;
+    root.classList.toggle("is-offline", !online);
+    var label = root.querySelector("[data-online-label]");
+    if (label) label.textContent = online ? "Онлайн · пишите · звоните" : "Ответим с 9:00";
+    root.setAttribute("data-state", online ? "online" : "offline");
+  }
+
+  function onlineMarkup() {
+    var wrap = document.createElement("div");
+    wrap.className = "online-status";
+    wrap.setAttribute("data-online-status", "");
+    wrap.innerHTML =
+      '<span class="online-dot" aria-hidden="true"></span>' +
+      '<span class="online-copy"><span class="online-label" data-online-label>Онлайн · пишите · звоните</span>' +
+      '<span class="online-actions">' +
+      '<a href="https://wa.me/79157548115" target="_blank" rel="noopener">WhatsApp</a>' +
+      '<a href="tel:+79157548115">звонить</a></span></span>';
+    return wrap;
+  }
+
+  function ensureOnlineNodes() {
+    var inner = document.querySelector(".header-inner");
+    if (inner && !inner.querySelector(":scope > [data-online-status]")) {
+      var burger = inner.querySelector(".burger");
+      inner.insertBefore(onlineMarkup(), burger || null);
+    }
+    var right = document.querySelector(".header-right");
+    if (right && !right.querySelector("[data-online-status]")) {
+      var phone = right.querySelector(".header-phone");
+      right.insertBefore(onlineMarkup(), phone || right.firstChild);
+    }
+    var foot = document.querySelector(".mobile-menu-footer");
+    if (foot && !foot.querySelector("[data-online-status]")) {
+      foot.insertBefore(onlineMarkup(), foot.firstChild);
+    }
+  }
+
+  function initOnlineStatus() {
+    ensureOnlineNodes();
+    function tick() {
+      var online = isWorkingNow();
+      document.querySelectorAll("[data-online-status]").forEach(function (node) {
+        applyOnlineState(node, online);
+      });
+    }
+    tick();
+    setInterval(tick, 30000);
+  }
+
   /* Sticky header elevation */
   function initHeaderScroll() {
     var header = document.querySelector(".site-header");
@@ -671,6 +742,7 @@
       }
     }
 
+    safe(initOnlineStatus);
     safe(initHeaderScroll);
     safe(function () { initUpload(document); });
     safe(function () { initPhoneMasks(document); });
