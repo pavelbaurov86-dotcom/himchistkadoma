@@ -190,6 +190,7 @@
     formData.set("phone", "+7" + digits);
 
     var submitBtn = form.querySelector('[type="submit"]');
+    if (submitBtn && submitBtn.dataset.sent === "1") return false;
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.dataset.label = submitBtn.textContent;
@@ -206,6 +207,12 @@
         form.reset();
         var uploadInfo = form.querySelector(".upload-info") || $("#upload-info");
         if (uploadInfo) uploadInfo.textContent = "Файлы не выбраны";
+        form.dispatchEvent(new CustomEvent("him-form-success", { bubbles: true }));
+        if (submitBtn && form.closest("#calc-app")) {
+          submitBtn.disabled = true;
+          submitBtn.dataset.sent = "1";
+          submitBtn.textContent = "Отправлено";
+        }
       })
       .catch(function (err) {
         console.error(err);
@@ -213,7 +220,7 @@
         if (error) error.style.display = "block";
       })
       .finally(function () {
-        if (submitBtn) {
+        if (submitBtn && submitBtn.dataset.sent !== "1") {
           submitBtn.disabled = false;
           submitBtn.textContent = submitBtn.dataset.label || "Отправить заявку";
         }

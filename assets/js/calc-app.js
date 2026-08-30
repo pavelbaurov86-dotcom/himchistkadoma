@@ -472,6 +472,11 @@
     if (!root) return;
     root.addEventListener("click", onClick);
     root.addEventListener("change", onChange);
+    root.addEventListener("him-form-success", function () {
+      state.cart = [];
+      saveCart();
+      try { sessionStorage.removeItem("him-calc-draft"); } catch (e) {}
+    });
     render();
   });
 })();
