@@ -325,3 +325,9 @@ body.calc-app {
 #calc-app > .form-success {
   margin: 12px 16px 0;
 }
+
+.ca-add:disabled {
+  background: #e4e0d8;
+  color: #6b6b6b;
+  cursor: not-allowed;
+}
