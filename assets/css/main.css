@@ -2269,3 +2269,28 @@ body { padding-bottom: 0; }
   }
 }
 .avito-widget .avito-score { display: none; }
+
+.reviews-live-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.reviews-live-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.reviews-live-badges a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
