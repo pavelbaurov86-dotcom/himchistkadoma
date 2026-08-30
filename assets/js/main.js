@@ -207,17 +207,23 @@
         form.reset();
         ["name", "phone", "comment"].forEach(function (n) {
           var el = form.querySelector('[name="' + n + '"]');
-          if (el) el.value = "";
+          if (el) {
+            el.defaultValue = "";
+            el.value = "";
+          }
         });
         var uploadInfo = form.querySelector(".upload-info") || $("#upload-info");
         if (uploadInfo) uploadInfo.textContent = "Файлы не выбраны";
-        form.dispatchEvent(new CustomEvent("him-form-success", { bubbles: true }));
         if (submitBtn && form.closest("#calc-app")) {
           submitBtn.disabled = true;
           submitBtn.dataset.sent = "1";
+          submitBtn.classList.remove("btn-accent");
           submitBtn.classList.add("is-sent");
+          submitBtn.style.setProperty("background", "#E4E0D8", "important");
+          submitBtn.style.setProperty("color", "#6B6B6B", "important");
           submitBtn.textContent = "Отправлено";
         }
+        form.dispatchEvent(new CustomEvent("him-form-success", { bubbles: true }));
       })
       .catch(function (err) {
         console.error(err);

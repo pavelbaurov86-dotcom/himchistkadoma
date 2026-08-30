@@ -162,7 +162,10 @@
       sessionStorage.setItem("him-calc-draft", text);
     } catch (e) {}
     var comment = document.getElementById("comment");
-    if (comment) comment.value = text;
+    if (comment) {
+      comment.defaultValue = "";
+      comment.value = text;
+    }
   }
 
   function el(html) {
@@ -331,7 +334,7 @@
     }
     var successStyle = state.sent ? ' style="display:block"' : "";
     var btn = state.sent
-      ? '<button class="ca-add is-sent" type="submit" disabled data-sent="1">Отправлено</button>'
+      ? '<button class="ca-add is-sent" type="submit" disabled data-sent="1" style="background:#E4E0D8!important;color:#6B6B6B!important">Отправлено</button>'
       : '<button class="ca-add" type="submit">Отправить заявку</button>';
     return (
       renderHeader("Заявка", "cart") +
