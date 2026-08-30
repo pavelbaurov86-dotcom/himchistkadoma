@@ -629,8 +629,10 @@
     if (!root) return;
     root.classList.toggle("is-offline", !online);
     var label = root.querySelector("[data-online-label]");
-    if (label) label.textContent = online ? "Онлайн · пишите · звоните" : "Ответим с 9:00";
+    var text = online ? "Онлайн · пишите · звоните" : "Ответим с 9:00";
+    if (label) label.textContent = text;
     root.setAttribute("data-state", online ? "online" : "offline");
+    root.setAttribute("aria-label", text);
   }
 
   function onlineMarkup() {
