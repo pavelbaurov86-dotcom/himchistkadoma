@@ -2262,10 +2262,10 @@ body { padding-bottom: 0; }
     top: auto !important;
   }
   .calc-layout {
-    padding-bottom: 200px;
+    padding-bottom: 0;
   }
   body.has-calc {
-    padding-bottom: 200px !important;
+    padding-bottom: 128px !important;
   }
 }
 .avito-widget .avito-score { display: none; }
@@ -2293,4 +2293,19 @@ body { padding-bottom: 0; }
   font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
+}
+
+.card-price-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.card-price-stack span { display: block; white-space: nowrap; }
+html { scroll-padding-top: 88px; }
+@media (max-width: 979px) {
+  .site-header { padding-bottom: 10px; }
 }
