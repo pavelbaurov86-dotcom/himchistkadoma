@@ -2309,3 +2309,9 @@ html { scroll-padding-top: 88px; }
 @media (max-width: 979px) {
   .site-header { padding-bottom: 10px; }
 }
+
+@media (max-width: 979px) {
+  html { scroll-padding-top: 88px; }
+  .calc-list { scroll-margin-top: 88px; }
+  .calc-item { scroll-margin-top: 88px; }
+}
