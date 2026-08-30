@@ -315,8 +315,16 @@
     );
   }
 
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
   function renderForm() {
-    fillForm();
+    var draft = draftFromCart();
+    try { sessionStorage.setItem("him-calc-draft", draft); } catch (e) {}
     return (
       renderHeader("Заявка", "cart") +
       '<form class="ca-form" id="request-form" enctype="multipart/form-data" onsubmit="return handleSubmit(event)">' +
@@ -326,7 +334,9 @@
       '<div class="phone-input-wrap"><span class="phone-prefix">+7</span>' +
       '<input id="phone" name="phone" required type="tel" autocomplete="tel" inputmode="tel" placeholder="915 754-81-15"/></div></div>' +
       '<div class="field"><label for="comment">Что нужно почистить?</label>' +
-      '<textarea id="comment" name="comment" rows="5"></textarea></div>' +
+      '<textarea id="comment" name="comment" rows="5">' + escapeHtml(draft) + '</textarea></div>' +
+      '<div class="form-success" id="form-success">Заявка отправлена. Мы свяжемся с вами в ближайшее время.</div>' +
+      '<div class="form-error" id="form-error">Пожалуйста, укажите имя и корректный номер телефона.</div>' +
       '<button class="ca-add" type="submit">Отправить заявку</button>' +
       "</form>"
     );
