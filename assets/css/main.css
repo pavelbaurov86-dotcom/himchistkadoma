@@ -2315,3 +2315,25 @@ html { scroll-padding-top: 88px; }
   .calc-list { scroll-margin-top: 88px; }
   .calc-item { scroll-margin-top: 88px; }
 }
+
+.header-right .online-status { display: none !important; }
+.header-hours {
+  display: none;
+  font-size: 13px;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.header-wa {
+  display: none;
+  font-size: 13px;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+@media (min-width: 980px) {
+  .header-hours, .header-wa, .header-time { display: block; }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+}

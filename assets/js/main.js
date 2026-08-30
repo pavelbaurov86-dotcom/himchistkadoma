@@ -664,9 +664,9 @@
       }
     }
     var right = document.querySelector(".header-right");
-    if (right && !right.querySelector("[data-online-status]")) {
-      var phone = right.querySelector(".header-phone");
-      right.insertBefore(onlineMarkup("full"), phone || right.firstChild);
+    if (right) {
+      var plaque = right.querySelector("[data-online-status]");
+      if (plaque) plaque.remove();
     }
     var foot = document.querySelector(".mobile-menu-footer");
     if (foot && !foot.querySelector("[data-online-status]")) {
