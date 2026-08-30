@@ -205,12 +205,17 @@
       .then(function () {
         if (success) success.style.display = "block";
         form.reset();
+        ["name", "phone", "comment"].forEach(function (n) {
+          var el = form.querySelector('[name="' + n + '"]');
+          if (el) el.value = "";
+        });
         var uploadInfo = form.querySelector(".upload-info") || $("#upload-info");
         if (uploadInfo) uploadInfo.textContent = "Файлы не выбраны";
         form.dispatchEvent(new CustomEvent("him-form-success", { bubbles: true }));
         if (submitBtn && form.closest("#calc-app")) {
           submitBtn.disabled = true;
           submitBtn.dataset.sent = "1";
+          submitBtn.classList.add("is-sent");
           submitBtn.textContent = "Отправлено";
         }
       })

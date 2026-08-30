@@ -326,8 +326,10 @@ body.calc-app {
   margin: 12px 16px 0;
 }
 
-.ca-add:disabled {
-  background: #e4e0d8;
-  color: #6b6b6b;
+.ca-add:disabled,
+.ca-add.is-sent {
+  background: #e4e0d8 !important;
+  color: #6b6b6b !important;
   cursor: not-allowed;
+  pointer-events: none;
 }

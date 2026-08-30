@@ -102,6 +102,7 @@
     qty: 1,
     drying: false,
     cart: [],
+    sent: false,
   };
 
   function money(n) {
@@ -155,6 +156,7 @@
   }
 
   function fillForm() {
+    if (state.sent) return;
     var text = draftFromCart();
     try {
       sessionStorage.setItem("him-calc-draft", text);
@@ -323,21 +325,27 @@
   }
 
   function renderForm() {
-    var draft = draftFromCart();
-    try { sessionStorage.setItem("him-calc-draft", draft); } catch (e) {}
+    var draft = state.sent ? "" : draftFromCart();
+    if (!state.sent) {
+      try { sessionStorage.setItem("him-calc-draft", draft); } catch (e) {}
+    }
+    var successStyle = state.sent ? ' style="display:block"' : "";
+    var btn = state.sent
+      ? '<button class="ca-add is-sent" type="submit" disabled data-sent="1">Отправлено</button>'
+      : '<button class="ca-add" type="submit">Отправить заявку</button>';
     return (
       renderHeader("Заявка", "cart") +
-      '<div class="form-success" id="form-success">Заявка ушла, перезвоним</div>' +
-      '<form class="ca-form" id="request-form" enctype="multipart/form-data" onsubmit="return handleSubmit(event)">' +
+      '<div class="form-success" id="form-success"' + successStyle + '>Заявка ушла, перезвоним</div>' +
+      '<form class="ca-form" id="request-form" enctype="multipart/form-data" onsubmit="return handleSubmit(event)" autocomplete="off">' +
       '<div class="field"><label for="name">Имя</label>' +
-      '<input id="name" name="name" required autocomplete="name" placeholder="Как к вам обращаться?"/></div>' +
+      '<input id="name" name="name" required autocomplete="off" placeholder="Как к вам обращаться?"/></div>' +
       '<div class="field"><label for="phone">Телефон</label>' +
       '<div class="phone-input-wrap"><span class="phone-prefix">+7</span>' +
-      '<input id="phone" name="phone" required type="tel" autocomplete="tel" inputmode="tel" placeholder="915 754-81-15"/></div>' +
+      '<input id="phone" name="phone" required type="tel" autocomplete="off" inputmode="tel" placeholder="915 754-81-15" value=""/></div>' +
       '<div class="form-error" id="form-error">Укажите корректный номер телефона.</div></div>' +
       '<div class="field"><label for="comment">Что нужно почистить?</label>' +
-      '<textarea id="comment" name="comment" rows="5">' + escapeHtml(draft) + '</textarea></div>' +
-      '<button class="ca-add" type="submit">Отправить заявку</button>' +
+      '<textarea id="comment" name="comment" rows="5"></textarea></div>' +
+      btn +
       "</form>"
     );
   }
@@ -369,7 +377,7 @@
     var hideBar = state.view === "form";
     root.innerHTML = view + (hideBar ? "" : renderBar());
     root.setAttribute("data-view", state.view);
-    if (state.view === "form") fillForm();
+    if (state.view === "form" && !state.sent) fillForm();
   }
 
   function openCat(id) {
@@ -473,9 +481,11 @@
     root.addEventListener("click", onClick);
     root.addEventListener("change", onChange);
     root.addEventListener("him-form-success", function () {
+      state.sent = true;
       state.cart = [];
       saveCart();
       try { sessionStorage.removeItem("him-calc-draft"); } catch (e) {}
+      render();
     });
     render();
   });
