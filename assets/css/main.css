@@ -1899,7 +1899,23 @@ html.js .reveal.is-visible {
   align-items: flex-end;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+}
+.reviews-live-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.reviews-live-badges a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 .reviews-ratings {
   display: flex;
@@ -2181,15 +2197,19 @@ html.js .reveal.is-visible {
 .reviews-widgets {
   display: grid;
   gap: 14px;
+  align-items: stretch;
 }
 @media (min-width: 980px) {
-  .reviews-widgets { grid-template-columns: 1.4fr .8fr; align-items: start; }
+  .reviews-widgets { grid-template-columns: 1.4fr .8fr; }
 }
 .reviews-widget {
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   overflow: hidden;
+  min-height: 520px;
 }
 .reviews-widget-head {
   display: flex;
@@ -2199,37 +2219,95 @@ html.js .reveal.is-visible {
   padding: 12px 14px;
   border-bottom: 1px solid var(--line);
   font-weight: 700;
+  flex-shrink: 0;
+}
+.reviews-widget iframe[title="Рейтинг на Яндекс Картах"] {
+  flex-shrink: 0;
 }
 .reviews-widget iframe {
   display: block;
   width: 100%;
   border: 0;
-  min-height: 420px;
   background: #fff;
+}
+.reviews-widget iframe[title="Отзывы Яндекс Карт"] {
+  flex: 1 1 auto;
+  min-height: 420px;
+  height: 100%;
 }
 .avito-widget {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
-  gap: 8px;
-  padding: 20px 18px 22px;
-  text-decoration: none;
+  min-height: 0;
   color: inherit;
-  min-height: 180px;
 }
-.avito-widget .avito-mark {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: #00AAFF;
+.avito-widget-top {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.avito-logo {
+  display: block;
+  width: auto;
+  height: 24px;
 }
 .avito-widget .avito-score {
   font-family: var(--display);
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 700;
   line-height: 1;
 }
-.avito-widget p { color: var(--muted); font-size: 14px; }
+.avito-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.avito-reviews-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.avito-review {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.avito-review:last-child { border-bottom: 0; }
+.avito-review-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.avito-review-name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 15px;
+}
+.avito-review-stars {
+  color: var(--accent);
+  letter-spacing: 1px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.avito-review-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.avito-widget-cta {
+  margin: 14px 18px 18px;
+  align-self: flex-start;
+  text-decoration: none;
+  flex-shrink: 0;
+  margin-top: auto;
+}
 
 .online-status--dot,
 .header-inner > .online-status {
@@ -2267,32 +2345,6 @@ body { padding-bottom: 0; }
   body.has-calc {
     padding-bottom: 128px !important;
   }
-}
-.avito-widget .avito-score { display: none; }
-
-.reviews-live-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-.reviews-live-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.reviews-live-badges a {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: #fff;
-  border: 1px solid var(--line);
-  font-size: 13px;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 .card-price-stack {

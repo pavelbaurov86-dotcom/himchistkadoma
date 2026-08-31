@@ -276,6 +276,57 @@ body.calc-app {
   background: #fff;
 }
 
+.ca-form .phone-input-wrap {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  border: 1px solid #ddd9d1;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.ca-form .phone-input-wrap:focus-within {
+  border-color: #e8b01e;
+  box-shadow: 0 0 0 4px rgba(232, 176, 30, 0.22);
+}
+
+.ca-form .phone-prefix {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0 0 0 14px;
+  font-weight: 700;
+  line-height: 1;
+  color: #5c5c5c;
+}
+
+.ca-form .phone-input-wrap input {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  border: 0;
+  border-radius: 0;
+  padding: 12px 14px 12px 8px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.ca-form .phone-input-wrap input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.ca-form .upload-area {
+  border-radius: 12px;
+}
+
+.ca-form .upload-info {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #5c5c5c;
+}
+
 .ca-bar {
   position: fixed;
   left: 0;

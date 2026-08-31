@@ -348,6 +348,13 @@
       '<div class="form-error" id="form-error">Укажите корректный номер телефона.</div></div>' +
       '<div class="field"><label for="comment">Что нужно почистить?</label>' +
       '<textarea id="comment" name="comment" rows="5"></textarea></div>' +
+      '<div class="field">' +
+      '<label class="visually-hidden" for="photos">Фото</label>' +
+      '<div class="upload-area" id="upload-area">' +
+      '<span class="upload-text">Перетащите или загрузите фото</span>' +
+      '<span class="upload-subtext">Можно несколько файлов — так точнее цена</span></div>' +
+      '<input accept="image/*" id="photos" multiple name="photos" style="display:none;" type="file"/>' +
+      '<div class="upload-info" id="upload-info">Файлы не выбраны</div></div>' +
       btn +
       "</form>"
     );
@@ -381,6 +388,12 @@
     root.innerHTML = view + (hideBar ? "" : renderBar());
     root.setAttribute("data-view", state.view);
     if (state.view === "form" && !state.sent) fillForm();
+    if (state.view === "form" && typeof window.initPhoneMasks === "function") {
+      window.initPhoneMasks(root);
+    }
+    if (state.view === "form" && typeof window.initUpload === "function") {
+      window.initUpload(root);
+    }
   }
 
   function openCat(id) {

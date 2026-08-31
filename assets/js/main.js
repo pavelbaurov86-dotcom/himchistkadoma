@@ -161,6 +161,8 @@
     });
   }
 
+  window.initPhoneMasks = initPhoneMasks;
+
   /* Form submit */
   window.handleSubmit = function (event) {
     event.preventDefault();
@@ -282,6 +284,8 @@
     photosInput.addEventListener("change", updateUploadInfo);
     updateUploadInfo();
   }
+
+  window.initUpload = initUpload;
 
   /* Gallery arrows */
   function initGalleries() {
