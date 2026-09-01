@@ -321,7 +321,7 @@ def render_business_jsonld(
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.9",
-            "reviewCount": "201",
+            "reviewCount": "237",
             "bestRating": "5",
             "worstRating": "1",
         },
