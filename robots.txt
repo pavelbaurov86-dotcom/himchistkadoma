@@ -1,17 +1,19 @@
 User-agent: *
 Allow: /
 
-# Закрываем служебное и мусор (на будущее)
 Disallow: /cgi-bin/
 Disallow: /tmp/
 Disallow: /admin/
-Disallow: /wp-admin/
-Disallow: /wp-login.php
-Disallow: /*?*
-Disallow: /*&*
+Disallow: /404.html
+Disallow: /privacy.html
 
-# Указываем главный хост
-Host: himchistkadoma.ru
+User-agent: Yandex
+Allow: /
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&gclid&fbclid
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /404.html
+Disallow: /privacy.html
 
-# Sitemap
 Sitemap: https://himchistkadoma.ru/sitemap.xml

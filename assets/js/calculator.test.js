@@ -1,0 +1,15 @@
+var assert = require("assert");
+var fs = require("fs");
+var path = require("path");
+var src = fs.readFileSync(path.join(__dirname, "calculator.js"), "utf8");
+eval(src.replace(/if \(typeof document[\s\S]*$/, ""));
+var C = globalThis.HimchistkaCalc;
+assert.strictEqual(C.computeTotal([{ price: 4500, qty: 1 }], false), 4500);
+assert.strictEqual(C.computeTotal([{ price: 4500, qty: 1 }], true), 5850);
+assert.strictEqual(C.computeTotal([], false), 0);
+assert.strictEqual(C.computeTotal([{ price: 4500, qty: 0 }], false), 0);
+assert.strictEqual(C.computeTotal([{ price: 720, qty: 2 }, { price: 450, qty: 10 }], false), 5940);
+assert.strictEqual(Number.isNaN(C.computeTotal([{ price: "x", qty: 1 }], false)), false);
+assert.strictEqual(C.computeTotal([{ price: "x", qty: 1 }], false), 0);
+assert.strictEqual(C.computeTotal([{ price: 1800, qty: -3 }], false), 0);
+console.log("calculator.test.js ok");
