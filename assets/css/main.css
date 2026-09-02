@@ -2026,6 +2026,7 @@ html.js .reveal.is-visible {
 .reviews-live-badges a {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   padding: 8px 14px;
   border-radius: 999px;
   background: #fff;
@@ -2033,6 +2034,19 @@ html.js .reveal.is-visible {
   font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
+}
+.reviews-live-badge::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background: center / contain no-repeat;
+}
+.reviews-live-badge--yandex::before {
+  background-image: url("../img/yandex-logo.svg");
+}
+.reviews-live-badge--avito::before {
+  background-image: url("../img/avito-icon.svg?v=2");
 }
 .reviews-ratings {
   display: flex;
@@ -2337,6 +2351,18 @@ html.js .reveal.is-visible {
   border-bottom: 1px solid var(--line);
   font-weight: 700;
   flex-shrink: 0;
+}
+.reviews-widget-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.reviews-widget-brand--yandex::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  background: center / contain no-repeat url("../img/yandex-logo.svg");
 }
 .reviews-widget iframe[title="Рейтинг на Яндекс Картах"] {
   flex-shrink: 0;
