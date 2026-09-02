@@ -656,6 +656,11 @@ html.js .trust-strip.reveal {
   margin-bottom: 6px;
 }
 
+.trust-value--word {
+  font-size: clamp(16px, 2.8vw, 24px);
+  letter-spacing: -0.04em;
+}
+
 .trust-label {
   font-size: 13px;
   line-height: 1.35;
