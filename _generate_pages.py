@@ -80,6 +80,10 @@ HEADER = """
       <div class="header-right">
         <div class="header-time">Пн–Вс 9:00–21:00</div>
         <a class="header-phone" href="tel:+79157548115">8&nbsp;915&nbsp;754-81-15</a>
+        <div class="header-messengers">
+          <a class="header-max" href="https://max.ru/u/f9LHodD0cOK5FNbOCb_fIQThqobzJ4XInPMok9xN09uC_HPaQnJnz6Wcu8A" target="_blank" rel="noopener">MAX</a>
+          <a class="header-telegram" href="https://t.me/himchistka_33" target="_blank" rel="noopener">Telegram</a>
+        </div>
         <a class="btn btn-primary btn-small header-cta" href="#form-block">Заявка</a>
       </div>
       <button aria-label="Открыть меню" aria-expanded="false" class="burger" id="burger" type="button">
@@ -113,6 +117,8 @@ FOOTER = """
     <div class="footer-links">
       <a href="privacy.html">Политика конфиденциальности</a>
       <a href="tel:+79157548115">8&nbsp;915&nbsp;754-81-15</a>
+      <a class="msg-link msg-link--max" href="https://max.ru/u/f9LHodD0cOK5FNbOCb_fIQThqobzJ4XInPMok9xN09uC_HPaQnJnz6Wcu8A" target="_blank" rel="noopener">MAX</a>
+      <a class="msg-link msg-link--telegram" href="https://t.me/himchistka_33" target="_blank" rel="noopener">Telegram</a>
     </div>
   </div>
 </footer>
@@ -140,9 +146,9 @@ FORM_SECTION = """
         </div>
         <div class="contact-row">
           <span class="contact-label">Мессенджеры</span>
-          <span class="contact-value">
-            <a href="https://wa.me/79157548115" target="_blank" rel="noopener">WhatsApp</a> ·
-            <a href="https://t.me/himchistka_33" target="_blank" rel="noopener">Telegram</a> ·
+          <span class="contact-value contact-value--links">
+            <a class="msg-link msg-link--max" href="https://max.ru/u/f9LHodD0cOK5FNbOCb_fIQThqobzJ4XInPMok9xN09uC_HPaQnJnz6Wcu8A" target="_blank" rel="noopener">MAX</a>
+            <a class="msg-link msg-link--telegram" href="https://t.me/himchistka_33" target="_blank" rel="noopener">Telegram</a>
             <a href="https://vk.com/kovrov_himchistka33" target="_blank" rel="noopener">VK</a>
           </span>
         </div>
@@ -255,7 +261,7 @@ def render_faq_jsonld(items: list[dict]) -> str:
 SAME_AS = [
     "https://vk.com/kovrov_himchistka33",
     "https://t.me/himchistka_33",
-    "https://wa.me/79157548115",
+    "https://max.ru/u/f9LHodD0cOK5FNbOCb_fIQThqobzJ4XInPMok9xN09uC_HPaQnJnz6Wcu8A",
 ]
 
 

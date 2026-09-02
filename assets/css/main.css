@@ -114,9 +114,19 @@ select {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
   gap: 14px;
   min-height: 58px;
   padding: 8px 10px 8px 16px;
+}
+
+.header-inner--simple .header-right {
+  display: flex;
+  margin-left: auto;
+}
+
+.header-inner--simple > .online-status {
+  display: none !important;
 }
 
 .logo {
@@ -124,6 +134,7 @@ select {
   align-items: center;
   gap: 10px;
   min-width: 0;
+  flex-shrink: 0;
 }
 
 .logo-icon {
@@ -156,7 +167,8 @@ select {
 
 .nav-desktop {
   display: none;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
   gap: 4px 18px;
   font-size: 14px;
   font-weight: 600;
@@ -188,6 +200,8 @@ select {
 .header-right {
   display: none;
   align-items: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
   gap: 12px;
 }
 
@@ -201,6 +215,8 @@ select {
   font-family: var(--display);
   font-size: 15px;
   font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .header-cta {
@@ -1101,6 +1117,40 @@ html.js .trust-strip.reveal {
   text-underline-offset: 3px;
 }
 
+.contact-value--links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.contact-value--links a {
+  text-decoration: none;
+}
+
+.msg-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.msg-link::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background: center / contain no-repeat;
+}
+
+.msg-link--max::before {
+  background-image: url("../img/max-logo.svg");
+}
+
+.msg-link--telegram::before {
+  background-image: url("../img/telegram-logo.svg?v=3");
+}
+
 .field {
   margin-bottom: 14px;
 }
@@ -1539,7 +1589,17 @@ a.equipment-item:hover {
 .footer-links {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12px 18px;
+}
+
+.footer-links .msg-link {
+  text-decoration: none;
+}
+
+.footer-links .msg-link--max::before {
+  background-color: #fff;
+  border-radius: 50%;
 }
 
 /* ---------- Mobile call bar ---------- */
@@ -1871,11 +1931,47 @@ html.js .reveal.is-visible {
 .online-label { color: var(--ink); }
 .online-actions {
   display: flex;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 700;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
 }
-.online-actions a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
+.online-action {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.online-action::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  background: center / contain no-repeat;
+}
+.online-action--max::before {
+  background-image: url("../img/max-logo.svg");
+}
+.online-action--telegram::before {
+  background-image: url("../img/telegram-logo.svg?v=3");
+}
+.online-action--call {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.online-action--call::before {
+  background-image: url("../img/phone-icon.svg");
+}
+.online-action:hover,
+.online-action:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
 .header-inner .online-status { margin-left: auto; }
 @media (min-width: 980px) {
   .header-inner > .online-status { display: none; }
@@ -1887,8 +1983,29 @@ html.js .reveal.is-visible {
 }
 .mobile-menu-footer .online-status {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
   max-width: none;
-  margin-bottom: 10px;
+  min-height: 56px;
+  margin-bottom: 14px;
+  padding: 8px 8px 8px 14px;
+  white-space: normal;
+}
+.mobile-menu-footer .online-copy {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+.mobile-menu-footer .online-label {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: nowrap;
 }
 
 /* ---------- Live reviews ---------- */
@@ -2375,17 +2492,70 @@ html { scroll-padding-top: 88px; }
   white-space: nowrap;
   color: var(--ink);
 }
-.header-wa {
+.header-messengers {
   display: none;
+  align-items: center;
+  gap: 10px;
+}
+.header-max,
+.header-telegram {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 13px;
-  text-decoration: underline;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-decoration: none;
   white-space: nowrap;
+  color: var(--ink);
+}
+.header-max::before,
+.header-telegram::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  background: center / contain no-repeat;
+}
+.header-max::before {
+  background-image: url("../img/max-logo.svg");
+}
+.header-telegram::before {
+  background-image: url("../img/telegram-logo.svg?v=3");
+}
+.header-max:hover,
+.header-max:focus-visible {
+  color: #471AFF;
+}
+.header-telegram:hover,
+.header-telegram:focus-visible {
+  color: #229ED9;
 }
 @media (min-width: 980px) {
-  .header-hours, .header-wa, .header-time { display: block; }
+  .header-hours, .header-time { display: block; }
+  .header-messengers { display: inline-flex; flex-shrink: 0; }
+  .header-cta { flex-shrink: 0; }
   .header-right {
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
     gap: 14px;
+  }
+}
+@media (min-width: 980px) and (max-width: 1199px) {
+  .header-hours,
+  .header-time { display: none; }
+  .logo-sub { display: none; }
+  .header-inner { gap: 10px; }
+  .nav-desktop { gap: 4px 12px; font-size: 13px; }
+  .header-right { gap: 10px; }
+  .header-phone { font-size: 14px; }
+}
+@media (max-width: 1279px) {
+  .header-max,
+  .header-telegram {
+    font-size: 0;
+    gap: 0;
+    letter-spacing: 0;
   }
 }

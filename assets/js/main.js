@@ -654,6 +654,7 @@
     var text = online ? "Онлайн · пишите · звоните" : "Ответим с 9:00";
     if (label) label.textContent = text;
     root.setAttribute("data-state", online ? "online" : "offline");
+    root.setAttribute("role", "status");
     root.setAttribute("aria-label", text);
   }
 
@@ -661,28 +662,32 @@
     var wrap = document.createElement("div");
     wrap.className = mode === "dot" ? "online-status online-status--dot" : "online-status";
     wrap.setAttribute("data-online-status", "");
+    wrap.setAttribute("role", "status");
     wrap.innerHTML =
       '<span class="online-dot" aria-hidden="true"></span>' +
       (mode === "dot"
         ? ""
         : '<span class="online-copy"><span class="online-label" data-online-label>Онлайн · пишите · звоните</span>' +
           '<span class="online-actions">' +
-          '<a href="https://wa.me/79157548115" target="_blank" rel="noopener">WhatsApp</a>' +
-          '<a href="tel:+79157548115">звонить</a></span></span>');
+          '<a class="online-action online-action--max" href="https://max.ru/u/f9LHodD0cOK5FNbOCb_fIQThqobzJ4XInPMok9xN09uC_HPaQnJnz6Wcu8A" target="_blank" rel="noopener" aria-label="Написать в MAX"></a>' +
+          '<a class="online-action online-action--telegram" href="https://t.me/himchistka_33" target="_blank" rel="noopener" aria-label="Написать в Telegram"></a>' +
+          '<a class="online-action online-action--call" href="tel:+79157548115" aria-label="Позвонить"></a></span></span>');
     return wrap;
   }
 
   function ensureOnlineNodes() {
     var inner = document.querySelector(".header-inner");
     if (inner) {
+      var burger = inner.querySelector(".burger");
       var existing = inner.querySelector(":scope > [data-online-status]");
-      if (existing) {
+      if (!burger) {
+        if (existing) existing.remove();
+      } else if (existing) {
         existing.classList.add("online-status--dot");
         var copy = existing.querySelector(".online-copy");
         if (copy) copy.remove();
       } else {
-        var burger = inner.querySelector(".burger");
-        inner.insertBefore(onlineMarkup("dot"), burger || null);
+        inner.insertBefore(onlineMarkup("dot"), burger);
       }
     }
     var right = document.querySelector(".header-right");
