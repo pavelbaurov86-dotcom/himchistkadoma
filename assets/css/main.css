@@ -123,10 +123,36 @@ select {
 .header-inner--simple .header-right {
   display: flex;
   margin-left: auto;
+  flex-shrink: 0;
+}
+
+.header-inner--simple .logo {
+  flex: 1 1 auto;
+}
+
+.header-inner--simple .logo-main {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-inner--simple > .online-status {
   display: none !important;
+}
+
+@media (max-width: 979px) {
+  .header-inner--simple .logo-sub {
+    display: none;
+  }
+
+  .header-inner--simple .header-phone {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 639px) {
+  .header-inner--simple .header-phone {
+    display: none;
+  }
 }
 
 .logo {
