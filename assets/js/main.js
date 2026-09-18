@@ -2,7 +2,7 @@
   "use strict";
 
   var SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbybXYyLaTEnCSd8pVNKS9bG_FxcVu9e2MNln4-XEUbPO3M2wMyo0pdeXGWQfV8cnxg4tg/exec";
+    "https://script.google.com/macros/s/AKfycby_cxb6rqhwYAyIEROrk7ZPoS-BKTJuBawgrjMHPrYIPxxITpXQ3tQhh76gCFuT2plxQw/exec";
 
   function $(sel, root) {
     return (root || document).querySelector(sel);
@@ -163,6 +163,105 @@
 
   window.initPhoneMasks = initPhoneMasks;
 
+  /* Photos → Base64 for Google Apps Script (binary files in FormData are ignored by doPost) */
+  var MAX_PHOTOS = 6;
+  var MAX_IMAGE_SIDE = 1600;
+  var JPEG_QUALITY = 0.75;
+  var MAX_RAW_FILE_BYTES = 4 * 1024 * 1024;
+
+  function rememberErrorText(error) {
+    if (error && !error.dataset.defaultText) {
+      error.dataset.defaultText = error.textContent;
+    }
+  }
+
+  function showFormError(success, error, message) {
+    if (success) success.style.display = "none";
+    if (!error) return;
+    rememberErrorText(error);
+    error.textContent = message || error.dataset.defaultText;
+    error.style.display = "block";
+  }
+
+  function hideFormError(error) {
+    if (!error) return;
+    rememberErrorText(error);
+    error.style.display = "none";
+    error.textContent = error.dataset.defaultText;
+  }
+
+  function fileToDataUrl(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        resolve(reader.result);
+      };
+      reader.onerror = function () {
+        reject(new Error("Не удалось прочитать файл"));
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function encodedPhoto(name, mimeType, dataUrl) {
+    return { name: name, mimeType: mimeType, dataUrl: dataUrl };
+  }
+
+  function compressPhoto(file) {
+    if (!file.type || file.type.indexOf("image/") !== 0) {
+      if (file.size > MAX_RAW_FILE_BYTES) {
+        return Promise.reject(new Error("Файл слишком большой (макс. 4 МБ)"));
+      }
+      return fileToDataUrl(file).then(function (dataUrl) {
+        return encodedPhoto(file.name, file.type || "application/octet-stream", dataUrl);
+      });
+    }
+
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        var w = img.naturalWidth || img.width;
+        var h = img.naturalHeight || img.height;
+        var scale = Math.min(1, MAX_IMAGE_SIDE / Math.max(w, h, 1));
+        w = Math.max(1, Math.round(w * scale));
+        h = Math.max(1, Math.round(h * scale));
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(img, 0, 0, w, h);
+        URL.revokeObjectURL(url);
+        var dataUrl = canvas.toDataURL("image/jpeg", JPEG_QUALITY);
+        var name = String(file.name || "photo").replace(/\.[^.]+$/, "") + ".jpg";
+        resolve(encodedPhoto(name, "image/jpeg", dataUrl));
+      };
+      img.onerror = function () {
+        URL.revokeObjectURL(url);
+        if (file.size > MAX_RAW_FILE_BYTES) {
+          reject(new Error("Не удалось обработать фото. Попробуйте файл поменьше."));
+          return;
+        }
+        fileToDataUrl(file)
+          .then(function (dataUrl) {
+            resolve(encodedPhoto(file.name, file.type || "image/jpeg", dataUrl));
+          })
+          .catch(reject);
+      };
+      img.src = url;
+    });
+  }
+
+  function encodePhotos(fileList) {
+    var files = Array.prototype.slice.call(fileList || []);
+    if (files.length > MAX_PHOTOS) {
+      return Promise.reject(new Error("Можно прикрепить не больше " + MAX_PHOTOS + " фото"));
+    }
+    return Promise.all(files.map(compressPhoto));
+  }
+
   /* Form submit */
   window.handleSubmit = function (event) {
     event.preventDefault();
@@ -172,24 +271,23 @@
 
     var nameInput = form.querySelector('[name="name"]');
     var phoneInput = form.querySelector('[name="phone"]');
+    var commentInput = form.querySelector('[name="comment"]');
+    var photosInput = form.querySelector('[name="photos"]');
     var success = form.querySelector(".form-success") || $("#form-success");
     var error = form.querySelector(".form-error") || $("#form-error");
 
     var name = nameInput ? nameInput.value.trim() : "";
     var phoneRaw = phoneInput ? phoneInput.value.trim() : "";
     var digits = normalizeMobileDigits(phoneRaw);
+    var comment = commentInput ? commentInput.value.trim() : "";
 
     if (!name || digits.length < 10) {
-      if (success) success.style.display = "none";
-      if (error) error.style.display = "block";
+      showFormError(success, error, null);
       return false;
     }
 
     if (success) success.style.display = "none";
-    if (error) error.style.display = "none";
-
-    var formData = new FormData(form);
-    formData.set("phone", "+7" + digits);
+    hideFormError(error);
 
     var submitBtn = form.querySelector('[type="submit"]');
     if (submitBtn && submitBtn.dataset.sent === "1") return false;
@@ -199,12 +297,26 @@
       submitBtn.textContent = "Отправка…";
     }
 
-    fetch(SCRIPT_URL, { method: "POST", body: formData })
+    encodePhotos(photosInput && photosInput.files)
+      .then(function (photos) {
+        var formData = new FormData();
+        formData.set("name", name);
+        formData.set("phone", "+7" + digits);
+        formData.set("comment", comment);
+        formData.set("fileCount", String(photos.length));
+        photos.forEach(function (photo, i) {
+          formData.set("fileName" + i, photo.name);
+          formData.set("mimeType" + i, photo.mimeType);
+          formData.set("fileData" + i, photo.dataUrl);
+        });
+        return fetch(SCRIPT_URL, { method: "POST", body: formData });
+      })
       .then(function (response) {
         if (!response.ok) throw new Error("Network response was not ok");
         return response.text();
       })
       .then(function () {
+        hideFormError(error);
         if (success) success.style.display = "block";
         form.reset();
         ["name", "phone", "comment"].forEach(function (n) {
@@ -229,8 +341,11 @@
       })
       .catch(function (err) {
         console.error(err);
-        if (success) success.style.display = "none";
-        if (error) error.style.display = "block";
+        showFormError(
+          success,
+          error,
+          err && err.message ? err.message : "Не удалось отправить заявку. Попробуйте ещё раз."
+        );
       })
       .finally(function () {
         if (submitBtn && submitBtn.dataset.sent !== "1") {
